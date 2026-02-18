@@ -29,7 +29,7 @@ Current solutions miss the mark:
 A single JSON file at `/.well-known/ai-transparency.json` that:
 
 - ✅ **Fulfills Article 50** — machine-readable AI content disclosure
-- ✅ **Per-route granularity** — chatbot (ATS-4) vs. blog (ATS-2) vs. legal pages (ATS-0)
+- ✅ **Per-route granularity** — chatbot (ATS-5) vs. blog (ATS-2) vs. legal pages (ATS-0)
 - ✅ **ATS Framework compatible** — January 2026 Authorship Transparency Statement tiers
 - ✅ **Validatable** — `$schema` reference for automated compliance checking
 - ✅ **5-minute deployment** — no crypto, no certificates, no infrastructure
@@ -51,7 +51,7 @@ Create `/.well-known/ai-transparency.json`:
     {
       "scope": "/chatbot/*",
       "content_types": ["text"],
-      "ats_tier": "ATS-4",
+      "ats_tier": "ATS-5",
       "ats_extent": "E4",
       "human_oversight": false
     },
@@ -79,15 +79,19 @@ That's it. You're Article 50 compliant.
 
 ## ATS Tiers (Authorship Transparency Statement)
 
-The ATS Framework (January 2026) defines **who drafted the content**:
+The ATS Framework (January 2026, [Meaningfulness Media Group](https://github.com/ATS-Framework)) defines **six tiers of AI involvement** in content creation:
 
-| Tier | Description | Example |
-|---|---|---|
-| **ATS-0** | Fully human-authored, no AI | Legal pages, Impressum |
-| **ATS-1** | Human-authored with AI tools | Spell-check, grammar correction |
-| **ATS-2** | AI generates fragments, human edits | AI-assisted blog posts |
-| **ATS-3** | AI generates full draft, human reviews | AI-drafted newsletters |
-| **ATS-4** | Autonomous AI agent | Chatbots, auto-generated reports |
+| Tier | Role Name | Human Role | Example |
+|---|---|---|---|
+| **ATS-0** | Unaugmented (Traditional Artisan) | Sole author, no AI | Legal pages, Impressum |
+| **ATS-1** | Augmented (Architect) | Author; AI refines/analyzes | Spell-check, grammar, research |
+| **ATS-1T** | Transformative (Translator) | Author; AI translates only | One-to-one translation |
+| **ATS-2** | Co-Creative (Producer) | Editor; AI drafts fragments | AI-assisted blog posts |
+| **ATS-3** | Generative (Director) | Reviewer; AI drafts structure | AI-drafted newsletters |
+| **ATS-4** | Autonomous (Editor) | Oversight; AI generates from outlines | Auto-generated reports |
+| **ATS-5** | Fully Autonomous (Publisher) | None; AI generates & publishes | Chatbots, autonomous agents |
+
+> **Bright Line:** ATS-2 marks the threshold where AI generates first-pass token sequences ("generative use"). ATS-0 and ATS-1 are "reactive use" only.
 
 ## E-Scale (AI Contribution Extent)
 
@@ -159,7 +163,7 @@ See the [examples/](examples/) directory:
 
 | Feature | This Protocol | C2PA | IETF OETP | llms.txt |
 |---|---|---|---|---|
-| Text content | ✅ | ❌ (images) | ✅ | ❌ |
+| Text content | ✅ | ⚠️ Emerging | ✅ | ❌ |
 | Per-route scope | ✅ | ❌ | ❌ | ❌ |
 | ATS tiers | ✅ | ❌ | Partial | ❌ |
 | No crypto needed | ✅ | ❌ | ✅ | ✅ |
@@ -178,7 +182,7 @@ Cloudflare Workers · Vercel Edge · Nginx · Apache · AWS Lambda@Edge · WordP
 from ai_bot_middleware import AIBotMiddleware
 
 m = AIBotMiddleware(ai_content_policies=[
-    {"scope": "/chatbot/*", "ats_tier": "ATS-4", "ats_extent": "E4"},
+    {"scope": "/chatbot/*", "ats_tier": "ATS-5", "ats_extent": "E4"},
     {"scope": "/blog/*", "ats_tier": "ATS-2", "human_oversight": True},
     {"scope": "/impressum", "ats_tier": "ATS-0"},
 ])
@@ -212,7 +216,7 @@ See [SPEC.md](SPEC.md) for the formal specification.
 Created by [Sascha Deforth](https://www.linkedin.com/in/deforth/) at [Antigravity Ventures](https://www.hopeandglory.studio).
 
 Built on:
-- [ATS Framework](https://www.authorshiptransparency.org) (January 2026)
+- [ATS Framework](https://github.com/ATS-Framework/ATS-Framework) (January 2026, Meaningfulness Media Group)
 - [EU AI Act Article 50](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689)
 - [IETF RFC 7230](https://tools.ietf.org/html/rfc7230) HTTP/1.1 Message Syntax
 

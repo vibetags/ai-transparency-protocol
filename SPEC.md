@@ -86,7 +86,7 @@ The `policies` array enables per-route AI content declarations. Each policy obje
 |---|---|---|---|
 | `scope` | string or array | REQUIRED | URL pattern(s) this policy applies to |
 | `content_types` | array of strings | OPTIONAL | Content types: `text`, `images`, `video`, `audio` |
-| `ats_tier` | string | RECOMMENDED | ATS tier: `ATS-0` through `ATS-4` |
+| `ats_tier` | string | RECOMMENDED | ATS tier: `ATS-0` through `ATS-5` |
 | `ats_extent` | string | OPTIONAL | E-scale: `E0` through `E4` |
 | `human_oversight` | boolean | OPTIONAL | Whether human oversight exists |
 | `c2pa_status` | string | OPTIONAL | C2PA status: `signed`, `signaled`, `not-applicable` |
@@ -111,15 +111,19 @@ When multiple policies match a URL, the **most specific** scope takes precedence
 
 ### 7.1 ATS Tiers (Authorship Transparency Statement)
 
-The ATS Framework (January 2026) standardizes the declaration of AI involvement in content creation:
+The ATS Framework (January 2026, [Meaningfulness Media Group](https://github.com/ATS-Framework)) standardizes the declaration of AI involvement in content creation.
 
-| Tier | AI Role | Human Role | Description |
+| Tier | Role Name | Human Role | Description |
 |---|---|---|---|
-| `ATS-0` | None | Full author | Fully human-authored |
-| `ATS-1` | Tool | Author + AI tools | Spell-check, grammar, formatting |
-| `ATS-2` | Co-creator | Editor + curator | AI generates fragments, human assembles |
-| `ATS-3` | Drafter | Reviewer + approver | AI generates full draft, human validates |
-| `ATS-4` | Agent | Minimal oversight | Autonomous AI generation |
+| `ATS-0` | Unaugmented (Traditional Artisan) | Sole author | No generative AI functions used |
+| `ATS-1` | Augmented (Architect) | Author; AI refines | AI used for refinement, analysis, or research only |
+| `ATS-1T` | Transformative (Translator) | Author; AI translates | AI used only for one-to-one translation |
+| `ATS-2` | Co-Creative (Producer) | Editor; AI drafts fragments | AI drafts local fragments (sentences, paragraphs) |
+| `ATS-3` | Generative (Director) | Reviewer; AI drafts structure | AI drafts structural units (scenes, chapters) |
+| `ATS-4` | Autonomous (Editor) | Oversight; AI generates | AI generates from detailed outlines or agentic systems |
+| `ATS-5` | Fully Autonomous (Publisher) | None | AI generates and publishes autonomously |
+
+> **Bright Line:** ATS-2 marks the boundary between "reactive use" (ATS-0, ATS-1) and "generative use" (ATS-2+), where AI generates first-pass token sequences.
 
 ### 7.2 E-Scale (Extent of AI Contribution)
 
@@ -195,7 +199,7 @@ When no `policies` array is present, the simple `scope` object provides v1.x-com
 ## 12. References
 
 - [EU AI Act — Regulation (EU) 2024/1689](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689)
-- [ATS Framework — Authorship Transparency Statement](https://www.authorshiptransparency.org)
+- [ATS Framework — Authorship Transparency Statement](https://github.com/ATS-Framework/ATS-Framework) (v1.0, Meaningfulness Media Group)
 - [IETF RFC 7230 — HTTP/1.1 Message Syntax](https://tools.ietf.org/html/rfc7230)
 - [IETF OETP Draft — Open Ethics Transparency Protocol](https://datatracker.ietf.org/doc/draft-lukianets-open-ethics-transparency-protocol/)
 - [C2PA — Coalition for Content Provenance and Authenticity](https://c2pa.org)

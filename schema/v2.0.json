@@ -103,8 +103,8 @@
           },
           "ats_tier": {
             "type": "string",
-            "enum": ["ATS-0", "ATS-1", "ATS-2", "ATS-3", "ATS-4"],
-            "description": "Authorship Transparency Statement tier"
+            "enum": ["ATS-0", "ATS-1", "ATS-1T", "ATS-2", "ATS-3", "ATS-4", "ATS-5"],
+            "description": "Authorship Transparency Statement tier (v1.0, Meaningfulness Media Group)"
           },
           "ats_extent": {
             "type": "string",

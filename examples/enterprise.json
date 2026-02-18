@@ -9,7 +9,7 @@
     {
       "scope": "/chatbot/*",
       "content_types": ["text"],
-      "ats_tier": "ATS-4",
+      "ats_tier": "ATS-5",
       "ats_extent": "E4",
       "human_oversight": false,
       "description": "Autonomous AI chatbot with minimal human oversight."
