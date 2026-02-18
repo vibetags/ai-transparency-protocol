@@ -1,0 +1,55 @@
+{
+  "$schema": "https://ai-transparency-protocol.org/schema/v2.0.json",
+  "eu_ai_act": {
+    "article_50_compliant": true,
+    "effective_date": "2026-08-02",
+    "disclosure_method": ["http-header", "client-widget", "manifest"]
+  },
+  "policies": [
+    {
+      "scope": "/chatbot/*",
+      "content_types": ["text"],
+      "ats_tier": "ATS-4",
+      "ats_extent": "E4",
+      "human_oversight": false,
+      "description": "Autonomous AI chatbot with minimal human oversight."
+    },
+    {
+      "scope": "/blog/ai-news/*",
+      "content_types": ["text", "images"],
+      "ats_tier": "ATS-2",
+      "ats_extent": "E2",
+      "human_oversight": true,
+      "c2pa_status": "signaled",
+      "description": "AI-assisted news articles, reviewed by editorial team."
+    },
+    {
+      "scope": "/products/*",
+      "content_types": ["text"],
+      "ats_tier": "ATS-3",
+      "ats_extent": "E3",
+      "human_oversight": true,
+      "description": "AI-drafted product descriptions, approved by product team."
+    },
+    {
+      "scope": "/reports/*",
+      "content_types": ["text", "images"],
+      "ats_tier": "ATS-4",
+      "ats_extent": "E4",
+      "human_oversight": true,
+      "description": "Auto-generated analytics reports with human review gate."
+    },
+    {
+      "scope": ["/impressum", "/agb", "/datenschutz", "/karriere/*"],
+      "ats_tier": "ATS-0",
+      "ats_extent": "E0",
+      "description": "Strictly human-authored. No AI disclosure required."
+    }
+  ],
+  "transparency_policy_url": "https://enterprise.example.com/ai-transparency",
+  "contact": "ai-compliance@enterprise.example.com",
+  "last_updated": "2026-02-18",
+  "generator": "TrueSource AI Middleware",
+  "wcag_compliance": "WCAG 2.1 AA",
+  "x-asimov-laws": "acknowledged"
+}

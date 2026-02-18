@@ -1,0 +1,158 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ai-transparency-protocol.org/schema/v2.0.json",
+  "title": "AI Transparency Protocol Manifest",
+  "description": "Machine-readable AI Act Article 50 compliance manifest with ATS Framework support.",
+  "type": "object",
+  "required": ["$schema", "eu_ai_act", "transparency_policy_url", "contact"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri",
+      "const": "https://ai-transparency-protocol.org/schema/v2.0.json",
+      "description": "Schema validation URL"
+    },
+    "schema_version": {
+      "type": "string",
+      "description": "Legacy version indicator. Use $schema instead.",
+      "enum": ["1.0", "1.1", "2.0"]
+    },
+    "eu_ai_act": {
+      "type": "object",
+      "required": ["article_50_compliant", "effective_date", "disclosure_method"],
+      "properties": {
+        "article_50_compliant": {
+          "type": "boolean",
+          "description": "Whether the site complies with EU AI Act Article 50"
+        },
+        "effective_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Art. 50 enforcement date (2026-08-02)"
+        },
+        "disclosure_method": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["http-header", "client-widget", "manifest", "noscript"]
+              },
+              "description": "v2.0: Array of disclosure methods"
+            },
+            {
+              "type": "string",
+              "description": "v1.x legacy: String format"
+            }
+          ]
+        },
+        "ai_content_types": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["text", "images", "video", "audio", "code"]
+          }
+        },
+        "human_oversight": {
+          "type": "boolean"
+        },
+        "c2pa_status": {
+          "type": "string",
+          "enum": ["signed", "signaled", "not-applicable"]
+        },
+        "scope": {
+          "type": "object",
+          "description": "v1.x legacy scope (use policies array instead)",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["site-wide", "mixed-content", "path-specific"]
+            },
+            "paths": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          },
+          "required": ["type"]
+        }
+      }
+    },
+    "policies": {
+      "type": "array",
+      "description": "v2.0: Per-route content policies with ATS tiers",
+      "items": {
+        "type": "object",
+        "required": ["scope", "ats_tier"],
+        "properties": {
+          "scope": {
+            "oneOf": [
+              { "type": "string" },
+              {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            ],
+            "description": "URL pattern(s) this policy applies to"
+          },
+          "content_types": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["text", "images", "video", "audio", "code"]
+            }
+          },
+          "ats_tier": {
+            "type": "string",
+            "enum": ["ATS-0", "ATS-1", "ATS-2", "ATS-3", "ATS-4"],
+            "description": "Authorship Transparency Statement tier"
+          },
+          "ats_extent": {
+            "type": "string",
+            "enum": ["E0", "E1", "E2", "E3", "E4"],
+            "description": "Extent of AI contribution (E-Scale)"
+          },
+          "human_oversight": {
+            "type": "boolean",
+            "description": "Whether human oversight exists for this scope"
+          },
+          "c2pa_status": {
+            "type": "string",
+            "enum": ["signed", "signaled", "not-applicable"]
+          },
+          "description": {
+            "type": "string",
+            "description": "Human-readable description of AI usage"
+          }
+        }
+      }
+    },
+    "transparency_policy_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to human-readable transparency policy"
+    },
+    "contact": {
+      "type": "string",
+      "format": "email",
+      "description": "Compliance contact email"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO 8601 date of last update"
+    },
+    "generator": {
+      "type": "string",
+      "description": "Tool that generated the manifest"
+    },
+    "wcag_compliance": {
+      "type": "string",
+      "description": "WCAG compliance level (e.g., WCAG 2.1 AA)"
+    },
+    "x-asimov-laws": {
+      "type": "string",
+      "enum": ["acknowledged"],
+      "description": "Easter egg. The EU AI Act is Europe's bureaucratic Asimov's Laws. Acknowledge the classics."
+    }
+  }
+}
