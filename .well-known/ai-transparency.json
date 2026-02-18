@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ai-transparency-protocol.org/schema/v2.0.json",
+  "eu_ai_act": {
+    "article_50_compliant": true,
+    "effective_date": "2026-08-02",
+    "disclosure_method": ["manifest", "http-header"]
+  },
+  "policies": [
+    {
+      "scope": "/*",
+      "content_types": ["text"],
+      "ats_tier": "ATS-0",
+      "ats_extent": "E0",
+      "human_oversight": true,
+      "description": "Protocol documentation and specification — fully human-authored."
+    }
+  ],
+  "transparency_policy_url": "https://ai-transparency-protocol.org",
+  "contact": "hello@hopeandglory.studio",
+  "last_updated": "2026-02-18",
+  "generator": "Manual (dogfooding)",
+  "wcag_compliance": "WCAG 2.1 AA",
+  "x-asimov-laws": "acknowledged"
+}

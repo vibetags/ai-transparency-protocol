@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Transparency Protocol — EU AI Act Article 50 Compliance Made Simple</title>
+    <meta name="description" content="Machine-readable JSON manifest for EU AI Act Article 50 compliance. The pragmatic bridge between regulation and web reality. Deploy in 5 minutes.">
+    <meta name="keywords" content="AI Transparency, EU AI Act, Article 50, ATS Framework, AI Compliance, Machine-Readable Manifest, Content Transparency">
+    <meta name="author" content="Sascha Deforth — Antigravity Ventures">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="AI Transparency Protocol — The Poor Man's C2PA">
+    <meta property="og:description" content="Machine-readable EU AI Act Article 50 compliance manifest. Deploy in 5 minutes, not 5 months.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ai-transparency-protocol.org">
+    <meta property="og:image" content="https://ai-transparency-protocol.org/og-image.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Transparency Protocol">
+    <meta name="twitter:description" content="EU AI Act Article 50 compliance in a single JSON file.">
+
+    <!-- AI Transparency Protocol Auto-Discovery (dogfooding) -->
+    <link rel="ai-transparency" href="/.well-known/ai-transparency.json">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "AI Transparency Protocol",
+        "description": "Machine-readable JSON manifest for EU AI Act Article 50 compliance",
+        "url": "https://ai-transparency-protocol.org",
+        "author": {
+            "@type": "Person",
+            "name": "Sascha Deforth",
+            "url": "https://www.linkedin.com/in/deforth/"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Antigravity Ventures"
+        },
+        "license": "https://opensource.org/licenses/MIT"
+    }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">
+                <span class="nav-logo-icon">◈</span>
+                <span class="nav-logo-text">ATP</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="#problem" class="nav-link">Problem</a>
+                <a href="#solution" class="nav-link">Solution</a>
+                <a href="#ats-tiers" class="nav-link">ATS Tiers</a>
+                <a href="#quick-start" class="nav-link">Quick Start</a>
+                <a href="#comparison" class="nav-link">Compare</a>
+                <a href="#ethics" class="nav-link">Ethics</a>
+                <a href="https://github.com/vibetags/ai-transparency-protocol" class="nav-link nav-link--github" target="_blank" rel="noopener">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    GitHub
+                </a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-glow"></div>
+        <div class="hero-grid-bg"></div>
+        <div class="container">
+            <div class="hero-content reveal">
+                <div class="hero-badge">
+                    <span class="hero-badge-dot"></span>
+                    Open Standard · MIT License · v2.0
+                </div>
+                <h1 class="hero-title">
+                    AI Transparency<br>
+                    <span class="hero-title-accent">Protocol</span>
+                </h1>
+                <p class="hero-subtitle">
+                    The pragmatic bridge between EU AI Act Article 50 and web reality.<br>
+                    <span class="hero-subtitle-highlight">Machine-readable compliance in a single JSON file.</span>
+                </p>
+                <div class="hero-countdown">
+                    <div class="countdown-label">Article 50 Enforcement Deadline</div>
+                    <div class="countdown-timer" id="countdown">
+                        <div class="countdown-block">
+                            <span class="countdown-number" id="countdown-days">---</span>
+                            <span class="countdown-unit">Days</span>
+                        </div>
+                        <div class="countdown-separator">:</div>
+                        <div class="countdown-block">
+                            <span class="countdown-number" id="countdown-hours">--</span>
+                            <span class="countdown-unit">Hours</span>
+                        </div>
+                        <div class="countdown-separator">:</div>
+                        <div class="countdown-block">
+                            <span class="countdown-number" id="countdown-minutes">--</span>
+                            <span class="countdown-unit">Min</span>
+                        </div>
+                        <div class="countdown-separator">:</div>
+                        <div class="countdown-block">
+                            <span class="countdown-number" id="countdown-seconds">--</span>
+                            <span class="countdown-unit">Sec</span>
+                        </div>
+                    </div>
+                    <div class="countdown-date">August 2, 2026 — Fines up to €15,000,000</div>
+                </div>
+                <div class="hero-actions">
+                    <a href="#quick-start" class="btn btn-primary">
+                        Get Compliant in 5 Min
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="https://github.com/vibetags/ai-transparency-protocol" class="btn btn-secondary" target="_blank" rel="noopener">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        View on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="section" id="problem">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">The Problem</span>
+                <h2 class="section-title">Current Solutions Miss the Mark</h2>
+                <p class="section-description">
+                    The EU AI Act Article 50 demands machine-readable AI content disclosure.<br>
+                    Existing standards weren't built for this.
+                </p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card reveal">
+                    <div class="problem-card-icon problem-card-icon--red">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+                    </div>
+                    <h3 class="problem-card-title">llms.txt / W3C TDMRep</h3>
+                    <p class="problem-card-text">
+                        <strong>Inbound focus only.</strong> Tells scrapers what NOT to train on. Doesn't solve the Article 50 <em>outbound</em> disclosure obligation.
+                    </p>
+                    <span class="problem-card-verdict">❌ Wrong direction</span>
+                </div>
+                <div class="problem-card reveal">
+                    <div class="problem-card-icon problem-card-icon--orange">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3 class="problem-card-title">C2PA (Content Credentials)</h3>
+                    <p class="problem-card-text">
+                        <strong>Cryptographic overkill.</strong> Requires certificate infrastructure. Designed for images and video — not AI-generated text content.
+                    </p>
+                    <span class="problem-card-verdict">❌ Too complex</span>
+                </div>
+                <div class="problem-card reveal">
+                    <div class="problem-card-icon problem-card-icon--yellow">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    </div>
+                    <h3 class="problem-card-title">IETF OETP Draft</h3>
+                    <p class="problem-card-text">
+                        <strong>Massively overloaded.</strong> Demands model training details and data labeling. Unusable for normal web publishers.
+                    </p>
+                    <span class="problem-card-verdict">❌ Impractical</span>
+                </div>
+            </div>
+            <div class="problem-stat reveal">
+                <div class="problem-stat-number">€15M</div>
+                <div class="problem-stat-text">Maximum fine for non-compliance — or 3% of global annual turnover, whichever is higher.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="section section--dark" id="solution">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">The Solution</span>
+                <h2 class="section-title">One JSON File. Five Minutes. Compliant.</h2>
+                <p class="section-description">
+                    A single manifest at <code>/.well-known/ai-transparency.json</code> that fulfills<br>
+                    your Article 50 obligations — no crypto, no certificates, no enterprise tooling.
+                </p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card reveal">
+                    <div class="feature-icon">⚡</div>
+                    <h3>5-Minute Deployment</h3>
+                    <p>Create one JSON file, upload it. That's it. No infrastructure, no certificates, no vendor lock-in.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Per-Route Granularity</h3>
+                    <p>Chatbot (ATS-4) vs. Blog (ATS-2) vs. Legal pages (ATS-0). Don't declare your whole site as AI-generated.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-icon">✅</div>
+                    <h3>Article 50 Compliant</h3>
+                    <p>Machine-readable disclosure that EU audit tools and compliance scanners can validate automatically.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-icon">🔍</div>
+                    <h3>SEO-Safe</h3>
+                    <p>Granular scope prevents search engines from penalizing human content because of an AI chatbot on the same domain.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-icon">📐</div>
+                    <h3>Validatable Schema</h3>
+                    <p>JSON Schema reference enables automated compliance checking and continuous monitoring.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-icon">♿</div>
+                    <h3>WCAG 2.1 AA</h3>
+                    <p>Built-in accessibility. Transparency that isn't accessible to everyone isn't transparent at all.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ATS Tiers Section -->
+    <section class="section" id="ats-tiers">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">ATS Framework</span>
+                <h2 class="section-title">Authorship Transparency Statement</h2>
+                <p class="section-description">
+                    Five tiers that honestly declare who drafted the content — human, AI, or both.
+                </p>
+            </div>
+            <div class="ats-grid">
+                <div class="ats-card reveal" data-tier="0">
+                    <div class="ats-card-header">
+                        <span class="ats-tier-badge ats-tier-badge--0">ATS-0</span>
+                        <span class="ats-extent">E0 · &lt;1%</span>
+                    </div>
+                    <h3 class="ats-card-title">Fully Human</h3>
+                    <p class="ats-card-desc">No AI involvement whatsoever. Pure human authorship.</p>
+                    <div class="ats-card-example">
+                        <span class="ats-card-example-label">Example</span>
+                        Legal pages, Impressum, Terms of Service
+                    </div>
+                    <div class="ats-bar">
+                        <div class="ats-bar-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="ats-bar-labels">
+                        <span>Human</span><span>AI</span>
+                    </div>
+                </div>
+                <div class="ats-card reveal" data-tier="1">
+                    <div class="ats-card-header">
+                        <span class="ats-tier-badge ats-tier-badge--1">ATS-1</span>
+                        <span class="ats-extent">E1 · 1–25%</span>
+                    </div>
+                    <h3 class="ats-card-title">Human + AI Tools</h3>
+                    <p class="ats-card-desc">Human-authored with AI assistance for spelling, grammar, or formatting.</p>
+                    <div class="ats-card-example">
+                        <span class="ats-card-example-label">Example</span>
+                        Grammarly, spell-checkers, auto-formatting
+                    </div>
+                    <div class="ats-bar">
+                        <div class="ats-bar-fill" style="width: 15%"></div>
+                    </div>
+                    <div class="ats-bar-labels">
+                        <span>Human</span><span>AI</span>
+                    </div>
+                </div>
+                <div class="ats-card reveal" data-tier="2">
+                    <div class="ats-card-header">
+                        <span class="ats-tier-badge ats-tier-badge--2">ATS-2</span>
+                        <span class="ats-extent">E2 · 26–50%</span>
+                    </div>
+                    <h3 class="ats-card-title">AI Co-Creation</h3>
+                    <p class="ats-card-desc">AI generates fragments and sections. Human assembles, edits, and curates.</p>
+                    <div class="ats-card-example">
+                        <span class="ats-card-example-label">Example</span>
+                        AI-assisted blog posts, research summaries
+                    </div>
+                    <div class="ats-bar">
+                        <div class="ats-bar-fill" style="width: 40%"></div>
+                    </div>
+                    <div class="ats-bar-labels">
+                        <span>Human</span><span>AI</span>
+                    </div>
+                </div>
+                <div class="ats-card reveal" data-tier="3">
+                    <div class="ats-card-header">
+                        <span class="ats-tier-badge ats-tier-badge--3">ATS-3</span>
+                        <span class="ats-extent">E3 · 51–90%</span>
+                    </div>
+                    <h3 class="ats-card-title">AI Drafted</h3>
+                    <p class="ats-card-desc">AI generates the full draft. Human reviews, validates, and approves.</p>
+                    <div class="ats-card-example">
+                        <span class="ats-card-example-label">Example</span>
+                        AI-drafted newsletters, product descriptions
+                    </div>
+                    <div class="ats-bar">
+                        <div class="ats-bar-fill" style="width: 70%"></div>
+                    </div>
+                    <div class="ats-bar-labels">
+                        <span>Human</span><span>AI</span>
+                    </div>
+                </div>
+                <div class="ats-card reveal" data-tier="4">
+                    <div class="ats-card-header">
+                        <span class="ats-tier-badge ats-tier-badge--4">ATS-4</span>
+                        <span class="ats-extent">E4 · &gt;90%</span>
+                    </div>
+                    <h3 class="ats-card-title">Autonomous AI</h3>
+                    <p class="ats-card-desc">Fully AI-generated content with minimal or no human oversight.</p>
+                    <div class="ats-card-example">
+                        <span class="ats-card-example-label">Example</span>
+                        Chatbots, auto-generated reports, weather data
+                    </div>
+                    <div class="ats-bar">
+                        <div class="ats-bar-fill" style="width: 95%"></div>
+                    </div>
+                    <div class="ats-bar-labels">
+                        <span>Human</span><span>AI</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Start Section -->
+    <section class="section section--dark" id="quick-start">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Quick Start</span>
+                <h2 class="section-title">Deploy in 5 Minutes</h2>
+                <p class="section-description">
+                    Create <code>/.well-known/ai-transparency.json</code> on your server. Done.
+                </p>
+            </div>
+            <div class="code-demo reveal">
+                <div class="code-header">
+                    <div class="code-dots">
+                        <span class="code-dot code-dot--red"></span>
+                        <span class="code-dot code-dot--yellow"></span>
+                        <span class="code-dot code-dot--green"></span>
+                    </div>
+                    <span class="code-filename">/.well-known/ai-transparency.json</span>
+                    <button class="code-copy" id="codeCopy" aria-label="Copy to clipboard">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                        <span class="code-copy-text">Copy</span>
+                    </button>
+                </div>
+                <pre class="code-block"><code id="codeContent">{
+  <span class="code-key">"$schema"</span>: <span class="code-string">"https://ai-transparency-protocol.org/schema/v2.0.json"</span>,
+  <span class="code-key">"eu_ai_act"</span>: {
+    <span class="code-key">"article_50_compliant"</span>: <span class="code-bool">true</span>,
+    <span class="code-key">"effective_date"</span>: <span class="code-string">"2026-08-02"</span>,
+    <span class="code-key">"disclosure_method"</span>: [<span class="code-string">"http-header"</span>, <span class="code-string">"client-widget"</span>, <span class="code-string">"manifest"</span>]
+  },
+  <span class="code-key">"policies"</span>: [
+    {
+      <span class="code-key">"scope"</span>: <span class="code-string">"/chatbot/*"</span>,
+      <span class="code-key">"ats_tier"</span>: <span class="code-string">"ATS-4"</span>,
+      <span class="code-key">"ats_extent"</span>: <span class="code-string">"E4"</span>,
+      <span class="code-key">"human_oversight"</span>: <span class="code-bool">false</span>
+    },
+    {
+      <span class="code-key">"scope"</span>: <span class="code-string">"/blog/*"</span>,
+      <span class="code-key">"ats_tier"</span>: <span class="code-string">"ATS-2"</span>,
+      <span class="code-key">"ats_extent"</span>: <span class="code-string">"E2"</span>,
+      <span class="code-key">"human_oversight"</span>: <span class="code-bool">true</span>
+    },
+    {
+      <span class="code-key">"scope"</span>: [<span class="code-string">"/impressum"</span>, <span class="code-string">"/agb"</span>, <span class="code-string">"/datenschutz"</span>],
+      <span class="code-key">"ats_tier"</span>: <span class="code-string">"ATS-0"</span>,
+      <span class="code-key">"description"</span>: <span class="code-string">"Strictly human-authored, no AI disclosure required."</span>
+    }
+  ],
+  <span class="code-key">"transparency_policy_url"</span>: <span class="code-string">"https://example.com/ai-transparency"</span>,
+  <span class="code-key">"contact"</span>: <span class="code-string">"compliance@example.com"</span>,
+  <span class="code-key">"generator"</span>: <span class="code-string">"TrueSource AI Middleware"</span>
+}</code></pre>
+            </div>
+
+            <!-- Triple Layer -->
+            <div class="layers reveal">
+                <h3 class="layers-title">Triple-Layer Labeling</h3>
+                <div class="layers-grid">
+                    <div class="layer-card">
+                        <div class="layer-number">1</div>
+                        <h4>Machine Layer</h4>
+                        <p>HTTP Headers + JSON Manifest + HTML <code>&lt;link&gt;</code> auto-discovery</p>
+                        <code class="layer-code">&lt;link rel="ai-transparency" href="/.well-known/ai-transparency.json"&gt;</code>
+                    </div>
+                    <div class="layer-card">
+                        <div class="layer-number">2</div>
+                        <h4>Human Layer (JS)</h4>
+                        <p>WCAG 2.1 AA transparency badge widget with keyboard navigation</p>
+                        <code class="layer-code">Shadow DOM · Enter/Space/Escape · aria-expanded</code>
+                    </div>
+                    <div class="layer-card">
+                        <div class="layer-number">3</div>
+                        <h4>Fallback Layer</h4>
+                        <p><code>&lt;noscript&gt;</code> text-link for CSP-blocked environments</p>
+                        <code class="layer-code">Works without JavaScript · Zero dependencies</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="section" id="comparison">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Why This Protocol</span>
+                <h2 class="section-title">Head-to-Head Comparison</h2>
+                <p class="section-description">How we stack up against existing standards.</p>
+            </div>
+            <div class="table-wrapper reveal">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th class="highlight-col">AI Transparency Protocol</th>
+                            <th>C2PA</th>
+                            <th>IETF OETP</th>
+                            <th>llms.txt</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Text content support</td>
+                            <td class="highlight-col"><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                        </tr>
+                        <tr>
+                            <td>Per-route scope</td>
+                            <td class="highlight-col"><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="cross">✗</span></td>
+                        </tr>
+                        <tr>
+                            <td>ATS tier integration</td>
+                            <td class="highlight-col"><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="partial">◐</span></td>
+                            <td><span class="cross">✗</span></td>
+                        </tr>
+                        <tr>
+                            <td>No crypto/certificates needed</td>
+                            <td class="highlight-col"><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Article 50 compliant</td>
+                            <td class="highlight-col"><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="partial">◐</span></td>
+                            <td><span class="cross">✗</span></td>
+                        </tr>
+                        <tr>
+                            <td>5-minute deployment</td>
+                            <td class="highlight-col"><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="check">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>SEO-safe</td>
+                            <td class="highlight-col"><span class="check">✓</span></td>
+                            <td><span class="na">N/A</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="na">N/A</span></td>
+                        </tr>
+                        <tr>
+                            <td>JSON Schema validation</td>
+                            <td class="highlight-col"><span class="check">✓</span></td>
+                            <td><span class="na">N/A</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ethics Section -->
+    <section class="section section--dark" id="ethics">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Our Principles</span>
+                <h2 class="section-title">The Human-AI Social Contract</h2>
+                <p class="section-description">
+                    Six principles that guide every design decision in this protocol.
+                </p>
+            </div>
+            <div class="ethics-grid">
+                <div class="ethics-card reveal">
+                    <div class="ethics-number">01</div>
+                    <h3>Transparency Is Not Optional</h3>
+                    <p>Users have a fundamental right to know when they consume AI-generated content. This is not just law — it is an ethical imperative.</p>
+                </div>
+                <div class="ethics-card reveal">
+                    <div class="ethics-number">02</div>
+                    <h3>Complexity Kills Compliance</h3>
+                    <p>If a standard requires crypto infrastructure, only the biggest companies will adopt it. The other 99% of the web stays opaque. We choose pragmatism.</p>
+                </div>
+                <div class="ethics-card reveal">
+                    <div class="ethics-number">03</div>
+                    <h3>Granularity Prevents Harm</h3>
+                    <p>Calling an entire website "AI-generated" because of one chatbot is inaccurate and harmful. Per-route policies enable truthful disclosure.</p>
+                </div>
+                <div class="ethics-card reveal">
+                    <div class="ethics-number">04</div>
+                    <h3>Open Standards Protect All</h3>
+                    <p>Compliance tools should not be proprietary moats. MIT license, open spec, vendor-neutral. Small businesses need free infrastructure.</p>
+                </div>
+                <div class="ethics-card reveal">
+                    <div class="ethics-number">05</div>
+                    <h3>Accessibility Is Non-Negotiable</h3>
+                    <p>Transparency that isn't accessible to people with disabilities is not transparent. WCAG 2.1 AA is a requirement, not a feature.</p>
+                </div>
+                <div class="ethics-card reveal">
+                    <div class="ethics-number">06</div>
+                    <h3>No Compliance Washing</h3>
+                    <p>A manifest that claims compliance while hiding AI usage is worse than no manifest at all. Implementations must be verifiable.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ecosystem Section -->
+    <section class="section" id="ecosystem">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Complete AI Interface Layer</span>
+                <h2 class="section-title">Defense + Offense = Full Coverage</h2>
+                <p class="section-description">
+                    Two open protocols that solve the entire AI web integration challenge.
+                </p>
+            </div>
+            <div class="ecosystem-grid reveal">
+                <div class="ecosystem-card ecosystem-card--defense">
+                    <div class="ecosystem-card-label">Defense · Legal Compliance</div>
+                    <h3>AI Transparency Protocol</h3>
+                    <p class="ecosystem-card-problem">€15M fines for missing AI disclosure</p>
+                    <p class="ecosystem-card-solution"><code>ai-transparency.json</code> manifest + HTTP headers + client widget</p>
+                    <div class="ecosystem-card-tags">
+                        <span>EU AI Act</span>
+                        <span>Article 50</span>
+                        <span>ATS Tiers</span>
+                    </div>
+                    <a href="https://github.com/vibetags/ai-transparency-protocol" class="ecosystem-link" target="_blank" rel="noopener">This Repository →</a>
+                </div>
+                <div class="ecosystem-divider">
+                    <span>+</span>
+                </div>
+                <div class="ecosystem-card ecosystem-card--offense">
+                    <div class="ecosystem-card-label">Offense · AI Visibility</div>
+                    <h3>VibeTags™ &amp; AgenticContext™</h3>
+                    <p class="ecosystem-card-problem">35% of searches go to AI — your brand is invisible</p>
+                    <p class="ecosystem-card-solution">Emotional + contextual triggers in Schema.org for LLM optimization</p>
+                    <div class="ecosystem-card-tags">
+                        <span>GEO</span>
+                        <span>AI Search</span>
+                        <span>Brand Signal</span>
+                    </div>
+                    <a href="https://github.com/vibetags/vibetags-spec" class="ecosystem-link" target="_blank" rel="noopener">View VibeTags →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section section--cta" id="cta">
+        <div class="container">
+            <div class="cta-content reveal">
+                <h2 class="cta-title">Get Compliant Before August 2026</h2>
+                <p class="cta-description">
+                    The clock is ticking. Article 50 enforcement starts in <span id="ctaDays">---</span> days.<br>
+                    Start with one JSON file. Protect your business.
+                </p>
+                <div class="cta-actions">
+                    <a href="https://github.com/vibetags/ai-transparency-protocol" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        View Specification on GitHub
+                    </a>
+                    <a href="SPEC.md" class="btn btn-secondary btn-lg">
+                        Read Full Spec v2.0
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="nav-logo-icon">◈</span>
+                        AI Transparency Protocol
+                    </div>
+                    <p class="footer-tagline">The pragmatic bridge between EU AI Act Article 50 and web reality.</p>
+                    <p class="footer-license">MIT License — Use freely, attribute kindly.</p>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Protocol</h4>
+                    <a href="https://github.com/vibetags/ai-transparency-protocol/blob/main/SPEC.md" target="_blank" rel="noopener">Specification v2.0</a>
+                    <a href="https://github.com/vibetags/ai-transparency-protocol/blob/main/ETHICS.md" target="_blank" rel="noopener">Ethics Statement</a>
+                    <a href="https://github.com/vibetags/ai-transparency-protocol/tree/main/examples" target="_blank" rel="noopener">Examples</a>
+                    <a href="https://github.com/vibetags/ai-transparency-protocol/blob/main/schema/v2.0.json" target="_blank" rel="noopener">JSON Schema</a>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Legal</h4>
+                    <a href="/impressum.html">Impressum</a>
+                    <a href="/datenschutz.html">Datenschutz</a>
+                    <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689" target="_blank" rel="noopener">EU AI Act Full Text</a>
+                    <a href="https://www.authorshiptransparency.org" target="_blank" rel="noopener">ATS Framework</a>
+                    <a href="https://c2pa.org" target="_blank" rel="noopener">C2PA Standard</a>
+                    <a href="https://github.com/vibetags/vibetags-spec" target="_blank" rel="noopener">VibeTags™ Spec</a>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Community</h4>
+                    <a href="https://github.com/vibetags/ai-transparency-protocol" target="_blank" rel="noopener">GitHub Repository</a>
+                    <a href="https://github.com/vibetags/ai-transparency-protocol/issues" target="_blank" rel="noopener">Report an Issue</a>
+                    <a href="https://www.linkedin.com/in/deforth/" target="_blank" rel="noopener">Sascha Deforth</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Created by <a href="https://www.linkedin.com/in/deforth/" target="_blank" rel="noopener">Sascha Deforth</a> at <a href="https://www.hopeandglory.studio" target="_blank" rel="noopener">Antigravity Ventures</a></p>
+                <p class="footer-easter-egg" title="Isaac Asimov's Three Laws of Robotics, 1942">x-asimov-laws: acknowledged 🤖</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
