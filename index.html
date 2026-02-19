@@ -21,6 +21,7 @@
     <meta name="description" content="Machine-readable JSON manifest for EU AI Act Article 50 compliance. The pragmatic bridge between regulation and web reality. Deploy in 5 minutes.">
     <meta name="keywords" content="AI Transparency, EU AI Act, Article 50, ATS Framework, AI Compliance, Machine-Readable Manifest, Content Transparency">
     <meta name="author" content="Sascha Deforth — Antigravity Ventures">
+    <link rel="canonical" href="https://ai-transparency-protocol.vercel.app/">
 
     <!-- Open Graph -->
     <meta property="og:title" content="AI Transparency Protocol — The Poor Man's C2PA">
@@ -80,7 +81,9 @@
         },
         "sameAs": [
             "https://github.com/vibetags",
-            "https://www.linkedin.com/in/deforth/"
+            "https://github.com/vibetags/ai-transparency-protocol",
+            "https://www.linkedin.com/in/deforth/",
+            "https://www.hopeandglory.studio"
         ]
     }
     </script>
@@ -182,6 +185,68 @@
                     "@type": "Answer",
                     "text": "Non-compliance with EU AI Act Article 50 can result in fines up to €15,000,000 or 3% of global annual turnover, whichever is higher. The enforcement deadline is August 2, 2026."
                 }
+            }
+        ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://ai-transparency-protocol.vercel.app/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Specification v2.0",
+                "item": "https://ai-transparency-protocol.vercel.app/SPEC.md"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Quick Start",
+                "item": "https://ai-transparency-protocol.vercel.app/#quick-start"
+            }
+        ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to Deploy AI Transparency Protocol for EU AI Act Article 50 Compliance",
+        "description": "Deploy machine-readable AI transparency in 5 minutes with a single JSON file.",
+        "totalTime": "PT5M",
+        "estimatedCost": {
+            "@type": "MonetaryAmount",
+            "currency": "EUR",
+            "value": "0"
+        },
+        "step": [
+            {
+                "@type": "HowToStep",
+                "position": 1,
+                "name": "Create the manifest file",
+                "text": "Create a file at /.well-known/ai-transparency.json on your web server. Define your ATS tier (ATS-0 for fully human to ATS-5 for autonomous AI), set article_50_compliant to true, and add route-specific policies."
+            },
+            {
+                "@type": "HowToStep",
+                "position": 2,
+                "name": "Add HTTP headers",
+                "text": "Configure your server to send the AI-Transparency HTTP response header: 'AI-Transparency: article-50-compliant; manifest=/.well-known/ai-transparency.json; ats=YOUR_TIER'. This enables automated compliance verification."
+            },
+            {
+                "@type": "HowToStep",
+                "position": 3,
+                "name": "Add HTML auto-discovery",
+                "text": "Add a link tag to your HTML head: <link rel='ai-transparency' href='/.well-known/ai-transparency.json'>. Optionally embed the client-side widget (atp-widget.js) for visible user-facing transparency."
             }
         ]
     }
