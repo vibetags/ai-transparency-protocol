@@ -215,6 +215,9 @@ This pattern is RECOMMENDED because:
 <p class="ai-byline">✨ This article was drafted with AI assistance (ATS-3)</p>
 ```
 
+> [!TIP]
+> **Editorial Exemption (Art. 50 Abs. 5):** The AI Act exempts AI-generated content from disclosure obligations when "the content has undergone a process of human review or editorial control and a natural or legal person holds editorial responsibility." ATP's `human_oversight` + `editorial_responsibility` fields provide machine-readable proof of this exemption — a unique capability no other standard offers.
+
 ## 9. Client-Side Widget (RECOMMENDED)
 
 > **IMPORTANT:** Art. 50 does NOT require a pop-up, banner, or opt-in consent dialog. Unlike the GDPR (cookie banners), the AI Act requires only **transparency** — the user must be able to *see* the information, not *accept* it.
