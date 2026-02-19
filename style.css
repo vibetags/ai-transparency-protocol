@@ -7,27 +7,27 @@
 
 /* --- CSS Custom Properties --- */
 :root {
-    /* Palette — warm & organic */
-    --bg-primary: #f5f1e9;
-    --bg-secondary: #ece7dc;
-    --bg-dark: #1a0a3e;
-    --bg-dark-alt: #24104e;
+    /* Palette — matched to hopeandglory.studio */
+    --bg-primary: #F9F4EA;
+    --bg-secondary: #F0EBDF;
+    --bg-dark: #2D004F;
+    --bg-dark-alt: #3A0F6B;
     --bg-code: #1e1533;
 
-    /* Brand Colors */
-    --purple: #3a0ca3;
-    --purple-light: #5b2fcf;
-    --purple-dark: #1a0a3e;
-    --lime: #b5e636;
-    --lime-light: #d4f57e;
-    --lime-dark: #8fbf1a;
+    /* Brand Colors — exact hopeandglory.studio palette */
+    --purple: #6100A2;
+    --purple-light: #7B20C0;
+    --purple-dark: #2D004F;
+    --lime: #CCFF00;
+    --lime-light: #DDFF55;
+    --lime-dark: #99CC00;
 
     /* Text */
-    --text-primary: #1a0a3e;
+    --text-primary: #2D004F;
     --text-secondary: #4a3b6e;
     --text-muted: #7a6b9e;
-    --text-light: #f5f1e9;
-    --text-light-muted: rgba(245, 241, 233, 0.7);
+    --text-light: #F9F4EA;
+    --text-light-muted: rgba(249, 244, 234, 0.7);
 
     /* Accents */
     --red: #e63946;
@@ -69,12 +69,26 @@ html {
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Wix Madefor Display', 'Helvetica Neue', Arial, sans-serif;
     background: var(--bg-primary);
     color: var(--text-primary);
     line-height: 1.7;
     font-size: 16px;
     overflow-x: hidden;
+}
+
+/* Signature purple edge vignette — hopeandglory.studio style */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    box-shadow:
+        inset 0  6px 30px -8px rgba(97, 0, 162, 0.45),
+        inset 0 -6px 30px -8px rgba(97, 0, 162, 0.25),
+        inset  6px 0 30px -8px rgba(55, 0, 220, 0.35),
+        inset -6px 0 30px -8px rgba(55, 0, 220, 0.35);
 }
 
 /* --- Container --- */
@@ -86,6 +100,7 @@ body {
 
 /* --- Typography --- */
 h1, h2, h3, h4 {
+    font-family: 'Funnel Display', 'Wix Madefor Display', sans-serif;
     line-height: 1.15;
     font-weight: 800;
     letter-spacing: -0.03em;
@@ -94,7 +109,7 @@ h1, h2, h3, h4 {
 code {
     font-family: 'JetBrains Mono', 'Fira Code', monospace;
     font-size: 0.88em;
-    background: rgba(58, 12, 163, 0.08);
+    background: rgba(97, 0, 162, 0.08);
     padding: 0.15em 0.5em;
     border-radius: 6px;
     color: var(--purple);
@@ -133,16 +148,16 @@ a:hover {
     right: 0;
     z-index: 1000;
     padding: var(--space-sm) 0;
-    background: rgba(245, 241, 233, 0.85);
+    background: rgba(249, 244, 234, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(26, 10, 62, 0.06);
+    border-bottom: 1px solid rgba(45, 0, 79, 0.06);
     transition: var(--transition);
 }
 
 .nav.scrolled {
     padding: 0.6rem 0;
-    box-shadow: 0 4px 30px rgba(26, 10, 62, 0.08);
+    box-shadow: 0 4px 30px rgba(45, 0, 79, 0.08);
 }
 
 .nav-inner {
@@ -265,20 +280,20 @@ a:hover {
 .btn-primary {
     background: var(--purple);
     color: var(--text-light);
-    box-shadow: 0 4px 20px rgba(58, 12, 163, 0.3);
+    box-shadow: 0 4px 20px rgba(97, 0, 162, 0.3);
 }
 
 .btn-primary:hover {
     background: var(--purple-light);
     color: var(--text-light);
     transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(58, 12, 163, 0.4);
+    box-shadow: 0 8px 30px rgba(97, 0, 162, 0.4);
 }
 
 .btn-secondary {
     background: transparent;
     color: var(--text-primary);
-    border: 2px solid rgba(26, 10, 62, 0.15);
+    border: 2px solid rgba(45, 0, 79, 0.15);
 }
 
 .btn-secondary:hover {
@@ -310,7 +325,7 @@ a:hover {
     right: -200px;
     width: 700px;
     height: 700px;
-    background: radial-gradient(circle, rgba(181, 230, 54, 0.25) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(204, 255, 0, 0.25) 0%, transparent 70%);
     border-radius: 50%;
     filter: blur(80px);
     pointer-events: none;
@@ -323,7 +338,7 @@ a:hover {
     left: -300px;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(58, 12, 163, 0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(97, 0, 162, 0.08) 0%, transparent 70%);
     border-radius: 50%;
     filter: blur(60px);
     pointer-events: none;
@@ -347,8 +362,8 @@ a:hover {
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1.2rem;
-    background: rgba(58, 12, 163, 0.06);
-    border: 1px solid rgba(58, 12, 163, 0.12);
+    background: rgba(97, 0, 162, 0.06);
+    border: 1px solid rgba(97, 0, 162, 0.12);
     border-radius: var(--radius-pill);
     font-size: 0.82rem;
     font-weight: 600;
@@ -404,8 +419,8 @@ a:hover {
 .hero-countdown {
     margin-bottom: var(--space-lg);
     padding: var(--space-md) var(--space-lg);
-    background: rgba(26, 10, 62, 0.04);
-    border: 1px solid rgba(26, 10, 62, 0.08);
+    background: rgba(45, 0, 79, 0.04);
+    border: 1px solid rgba(45, 0, 79, 0.08);
     border-radius: var(--radius-lg);
     display: inline-block;
 }
@@ -484,7 +499,7 @@ a:hover {
 }
 
 .section--dark code {
-    background: rgba(181, 230, 54, 0.12);
+    background: rgba(204, 255, 0, 0.12);
     color: var(--lime);
 }
 
@@ -503,13 +518,13 @@ a:hover {
     color: var(--purple);
     margin-bottom: var(--space-sm);
     padding: 0.4rem 1rem;
-    background: rgba(58, 12, 163, 0.06);
+    background: rgba(97, 0, 162, 0.06);
     border-radius: var(--radius-pill);
 }
 
 .section--dark .section-tag {
     color: var(--lime);
-    background: rgba(181, 230, 54, 0.1);
+    background: rgba(204, 255, 0, 0.1);
 }
 
 .section-title {
@@ -543,13 +558,13 @@ a:hover {
     background: white;
     border-radius: var(--radius-lg);
     padding: var(--space-lg);
-    border: 1px solid rgba(26, 10, 62, 0.06);
+    border: 1px solid rgba(45, 0, 79, 0.06);
     transition: var(--transition);
 }
 
 .problem-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 20px 60px rgba(26, 10, 62, 0.08);
+    box-shadow: 0 20px 60px rgba(45, 0, 79, 0.08);
 }
 
 .problem-card-icon {
@@ -600,9 +615,9 @@ a:hover {
 .problem-stat {
     text-align: center;
     padding: var(--space-lg);
-    background: linear-gradient(135deg, rgba(58, 12, 163, 0.04) 0%, rgba(181, 230, 54, 0.04) 100%);
+    background: linear-gradient(135deg, rgba(97, 0, 162, 0.04) 0%, rgba(204, 255, 0, 0.04) 100%);
     border-radius: var(--radius-lg);
-    border: 1px solid rgba(58, 12, 163, 0.08);
+    border: 1px solid rgba(97, 0, 162, 0.08);
 }
 
 .problem-stat-number {
@@ -641,7 +656,7 @@ a:hover {
 .feature-card:hover {
     background: rgba(255, 255, 255, 0.07);
     transform: translateY(-4px);
-    border-color: rgba(181, 230, 54, 0.2);
+    border-color: rgba(204, 255, 0, 0.2);
 }
 
 .feature-icon {
@@ -676,14 +691,14 @@ a:hover {
     background: white;
     border-radius: var(--radius-lg);
     padding: var(--space-md);
-    border: 1px solid rgba(26, 10, 62, 0.06);
+    border: 1px solid rgba(45, 0, 79, 0.06);
     transition: var(--transition);
     text-align: center;
 }
 
 .ats-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 20px 60px rgba(26, 10, 62, 0.08);
+    box-shadow: 0 20px 60px rgba(45, 0, 79, 0.08);
 }
 
 .ats-card-header {
@@ -702,8 +717,8 @@ a:hover {
 }
 
 .ats-tier-badge--0 { background: rgba(46, 196, 182, 0.1); color: var(--green); }
-.ats-tier-badge--1 { background: rgba(58, 12, 163, 0.08); color: var(--purple-light); }
-.ats-tier-badge--2 { background: rgba(181, 230, 54, 0.15); color: var(--lime-dark); }
+.ats-tier-badge--1 { background: rgba(97, 0, 162, 0.08); color: var(--purple-light); }
+.ats-tier-badge--2 { background: rgba(204, 255, 0, 0.15); color: var(--lime-dark); }
 .ats-tier-badge--3 { background: rgba(244, 132, 95, 0.1); color: var(--orange); }
 .ats-tier-badge--4 { background: rgba(230, 57, 70, 0.1); color: var(--red); }
 
@@ -918,7 +933,7 @@ a:hover {
     display: block;
     font-size: 0.72rem;
     padding: 0.5rem;
-    background: rgba(181, 230, 54, 0.08);
+    background: rgba(204, 255, 0, 0.08);
     border-radius: 8px;
     color: var(--lime);
     word-break: break-all;
@@ -931,8 +946,8 @@ a:hover {
     overflow-x: auto;
     border-radius: var(--radius-lg);
     background: white;
-    border: 1px solid rgba(26, 10, 62, 0.06);
-    box-shadow: 0 10px 40px rgba(26, 10, 62, 0.04);
+    border: 1px solid rgba(45, 0, 79, 0.06);
+    box-shadow: 0 10px 40px rgba(45, 0, 79, 0.04);
 }
 
 .comparison-table {
@@ -955,7 +970,7 @@ a:hover {
 
 .comparison-table td {
     padding: 1rem var(--space-md);
-    border-bottom: 1px solid rgba(26, 10, 62, 0.04);
+    border-bottom: 1px solid rgba(45, 0, 79, 0.04);
     white-space: nowrap;
 }
 
@@ -964,11 +979,11 @@ a:hover {
 }
 
 .comparison-table tr:hover td {
-    background: rgba(58, 12, 163, 0.02);
+    background: rgba(97, 0, 162, 0.02);
 }
 
 .highlight-col {
-    background: rgba(58, 12, 163, 0.03);
+    background: rgba(97, 0, 162, 0.03);
 }
 
 th.highlight-col {
@@ -1018,7 +1033,7 @@ th.highlight-col {
 }
 
 .ethics-card:hover {
-    border-color: rgba(181, 230, 54, 0.2);
+    border-color: rgba(204, 255, 0, 0.2);
     transform: translateY(-4px);
 }
 
@@ -1068,12 +1083,12 @@ th.highlight-col {
 
 .ecosystem-card--defense {
     background: white;
-    border: 2px solid rgba(58, 12, 163, 0.12);
+    border: 2px solid rgba(97, 0, 162, 0.12);
 }
 
 .ecosystem-card--offense {
     background: white;
-    border: 2px solid rgba(181, 230, 54, 0.25);
+    border: 2px solid rgba(204, 255, 0, 0.25);
 }
 
 .ecosystem-card-label {
@@ -1165,7 +1180,7 @@ th.highlight-col {
     right: -20%;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(181, 230, 54, 0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(204, 255, 0, 0.15) 0%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
 }
@@ -1199,12 +1214,12 @@ th.highlight-col {
 .section--cta .btn-primary {
     background: var(--lime);
     color: var(--purple-dark);
-    box-shadow: 0 4px 20px rgba(181, 230, 54, 0.3);
+    box-shadow: 0 4px 20px rgba(204, 255, 0, 0.3);
 }
 
 .section--cta .btn-primary:hover {
     background: var(--lime-light);
-    box-shadow: 0 8px 30px rgba(181, 230, 54, 0.4);
+    box-shadow: 0 8px 30px rgba(204, 255, 0, 0.4);
 }
 
 .section--cta .btn-secondary {
@@ -1335,11 +1350,11 @@ th.highlight-col {
         top: 100%;
         left: 0;
         right: 0;
-        background: rgba(245, 241, 233, 0.98);
+        background: rgba(249, 244, 234, 0.98);
         backdrop-filter: blur(20px);
         flex-direction: column;
         padding: var(--space-md);
-        border-bottom: 1px solid rgba(26, 10, 62, 0.06);
+        border-bottom: 1px solid rgba(45, 0, 79, 0.06);
     }
 
     .nav-links.open {
