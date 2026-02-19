@@ -20,6 +20,7 @@
       "ats_tier": "ATS-2",
       "ats_extent": "E2",
       "human_oversight": true,
+      "editorial_responsibility": "Editorial Team, Enterprise Corp.",
       "c2pa_status": "signaled",
       "description": "AI-assisted news articles, reviewed by editorial team."
     },
@@ -38,6 +39,16 @@
       "ats_extent": "E4",
       "human_oversight": true,
       "description": "Auto-generated analytics reports with human review gate."
+    },
+    {
+      "scope": "/media/ai-generated/*",
+      "content_types": ["images", "video"],
+      "ats_tier": "ATS-4",
+      "ats_extent": "E4",
+      "deepfake_disclosure": true,
+      "human_oversight": true,
+      "c2pa_status": "signed",
+      "description": "AI-generated media assets — deepfake disclosure per Art. 50 Abs. 4."
     },
     {
       "scope": ["/impressum", "/agb", "/datenschutz", "/karriere/*"],

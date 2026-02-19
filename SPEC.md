@@ -68,6 +68,22 @@ Every manifest MUST include a `$schema` property pointing to the versioned JSON 
 | `generator` | string | OPTIONAL | Tool that generated the manifest |
 | `wcag_compliance` | string | OPTIONAL | WCAG compliance level (e.g., "WCAG 2.1 AA") |
 
+### 4.1 Article 50 Paragraph Mapping
+
+The following table maps each paragraph of EU AI Act Article 50 to the corresponding protocol feature:
+
+| Art. 50 | Obligation | Addressee | Protocol Feature |
+|---|---|---|---|
+| Abs. 1 | Inform users of AI interaction | Provider | `ats_tier: ATS-4/5` + `scope` route matching |
+| Abs. 2 | Machine-readable output marking | Provider | JSON manifest + HTTP headers + `<link>` discovery |
+| Abs. 3 | Emotion/biometric system disclosure | Deployer | `content_types: ["biometric"]` |
+| Abs. 4.1 | Deepfake disclosure | Deployer | `deepfake_disclosure: true` + `content_types` |
+| Abs. 4.4 | AI text for public interest disclosure | Deployer | `ats_tier` + `human_oversight` |
+| Abs. 4.5 | Exemption for human-reviewed content | Deployer | `human_oversight: true` + `editorial_responsibility` |
+| Abs. 5 | Clear, distinguishable, accessible | Both | Client widget (RECOMMENDED) + WCAG 2.1 AA |
+| Abs. 6 | Chapter III unaffected | — | N/A |
+| Abs. 7 | AI Office codes of practice | — | Future alignment |
+
 ## 5. `eu_ai_act` Object
 
 | Property | Type | Required | Description |
@@ -85,10 +101,12 @@ The `policies` array enables per-route AI content declarations. Each policy obje
 | Property | Type | Required | Description |
 |---|---|---|---|
 | `scope` | string or array | REQUIRED | URL pattern(s) this policy applies to |
-| `content_types` | array of strings | OPTIONAL | Content types: `text`, `images`, `video`, `audio` |
+| `content_types` | array of strings | OPTIONAL | Content types: `text`, `images`, `video`, `audio`, `code`, `biometric` |
 | `ats_tier` | string | RECOMMENDED | ATS tier: `ATS-0` through `ATS-5` |
 | `ats_extent` | string | OPTIONAL | E-scale: `E0` through `E4` |
 | `human_oversight` | boolean | OPTIONAL | Whether human oversight exists |
+| `editorial_responsibility` | string | OPTIONAL | Person/entity with editorial control (Art. 50 Abs. 4 exemption) |
+| `deepfake_disclosure` | boolean | OPTIONAL | Whether scope contains AI-generated deepfake content (Art. 50 Abs. 4) |
 | `c2pa_status` | string | OPTIONAL | C2PA status: `signed`, `signaled`, `not-applicable` |
 | `description` | string | OPTIONAL | Human-readable description of AI usage |
 
@@ -153,18 +171,93 @@ AI-Generated-Content: true
 
 > **IMPORTANT:** The `Content-Credentials` header is reserved by the C2PA standard (Adobe, Microsoft) and MUST NOT be used for AI Act compliance to avoid parsing errors and legal "compliance washing".
 
-## 9. Client-Side Widget
+### 8.2 Source Code Declaration (RECOMMENDED)
 
-An optional JavaScript widget provides human-readable disclosure:
+HTML files SHOULD include a structured comment block at the top of the document declaring the AI transparency status. This provides human-readable transparency without any visible UI element:
 
-### 9.1 Requirements
+```html
+<!--
+  ╔══════════════════════════════════════════════════════╗
+  ║  AI TRANSPARENCY PROTOCOL — Source Code Declaration  ║
+  ║                                                      ║
+  ║  Tier:    ATS-2 (Co-Creative)                        ║
+  ║  Extent:  E2 (significant AI generation)             ║
+  ║  Scope:   /blog/*                                    ║
+  ║  Status:  EU AI Act Art. 50 compliant                ║
+  ║                                                      ║
+  ║  Manifest: /.well-known/ai-transparency.json         ║
+  ╚══════════════════════════════════════════════════════╝
+-->
+```
+
+This pattern is RECOMMENDED because:
+
+- **Zero cost** — no scripts, no styles, no performance impact
+- **Auditor-friendly** — visible in "View Source" and DevTools
+- **Crawler-parseable** — structured text in a predictable format
+- **Complements Layer 1** — the JSON manifest remains the canonical source
+
+## 9. Client-Side Widget (RECOMMENDED)
+
+> **IMPORTANT:** Art. 50 does NOT require a pop-up, banner, or opt-in consent dialog. Unlike the GDPR (cookie banners), the AI Act requires only **transparency** — the user must be able to *see* the information, not *accept* it.
+
+Art. 50 Abs. 2 requires **machine-readable** marking (fulfilled by the JSON manifest). Art. 50 Abs. 5 additionally requires that disclosure information is presented in a **"clear and distinguishable manner"** and conforms to **accessibility requirements**.
+
+While the law does not mandate a specific UI element, an inline contextual badge is the RECOMMENDED best practice for fulfilling Art. 50 Abs. 5.
+
+### 9.1 Design Principles
+
+The widget MUST follow the **Contextual UI** pattern (inline, not overlay):
+
+- **NO `position: fixed` overlays** — the badge injects into the document flow
+- **Inline injection** — placed after a logical anchor (heading, byline, article meta)
+- **Progressive disclosure** — shows minimal info first (`✨ AI co-created · ATS-2`), expands on click
+- **Chamäleon theming** — inherits host site typography via `font-family: inherit`
+- **White-label ready** — all colors configurable via CSS custom properties
+
+### 9.2 Industry Conventions
+
+| Pattern | Best For | Example |
+|---|---|---|
+| ✨ Sparkle icon | Universal AI indicator | `✨ AI-assisted` next to heading |
+| Byline integration | Blogs, news | `Author: Jane Doe · ✨ AI co-created` |
+| Footer disclaimer | Corporate, SEO | `Transparenzhinweis gem. EU AI Act: …` |
+| Micro-copy | Chatbots | `KI kann Fehler machen.` |
+
+### 9.3 CSS Custom Properties (Theming)
+
+Implementors SHOULD expose CSS custom properties for white-label deployment:
+
+```css
+:root {
+  --atp-bg: #f3f4f6;          /* Badge background */
+  --atp-text: #374151;         /* Badge text color */
+  --atp-accent: #6d28d9;       /* Focus outline, links */
+  --atp-radius: 4px;           /* Border radius */
+  --atp-font-size: 0.85em;     /* Badge font size */
+  --atp-panel-bg: #1f2937;     /* Tooltip background */
+  --atp-panel-text: #f9fafb;   /* Tooltip text */
+}
+```
+
+### 9.4 Injection Modes
+
+| Mode | Attribute | Behavior |
+|---|---|---|
+| Auto-detect | *(default)* | Finds `article header`, `.byline`, `h1` |
+| Explicit anchor | `data-atp-anchor="h1"` | Injects after specified CSS selector |
+| Footer | `data-atp-position="footer"` | Appends as discrete footnote |
+
+### 9.5 Technical Requirements
 
 - MUST use Shadow DOM for style isolation
-- MUST comply with WCAG 2.1 AA accessibility standards
+- MUST comply with WCAG 2.1 AA (Art. 50 Abs. 5)
 - MUST support keyboard navigation (Enter, Space, Escape)
 - MUST include `aria-expanded` state tracking
 - MUST include `focus-visible` styles
 - MUST provide a `<noscript>` fallback for CSP-restricted environments
+- SHOULD display the matched ATS tier, human oversight, and EU AI Act compliance
+- SHOULD support `deepfake_disclosure` and `editorial_responsibility` fields
 
 ## 10. Legacy Compatibility (v1.x)
 

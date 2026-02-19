@@ -98,7 +98,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "enum": ["text", "images", "video", "audio", "code"]
+              "enum": ["text", "images", "video", "audio", "code", "biometric"]
             }
           },
           "ats_tier": {
@@ -118,6 +118,14 @@
           "c2pa_status": {
             "type": "string",
             "enum": ["signed", "signaled", "not-applicable"]
+          },
+          "deepfake_disclosure": {
+            "type": "boolean",
+            "description": "Whether scope contains AI-generated deepfake content (Art. 50 Abs. 4)"
+          },
+          "editorial_responsibility": {
+            "type": "string",
+            "description": "Person/entity with editorial control — Art. 50 Abs. 4 exemption"
           },
           "description": {
             "type": "string",
