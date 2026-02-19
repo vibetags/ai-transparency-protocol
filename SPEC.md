@@ -7,6 +7,9 @@
 
 ---
 
+> [!CAUTION]
+> This specification is a **best-effort implementation** for compliance with Art. 50 of the EU AI Act (Regulation (EU) 2024/1689). While specific harmonised EU standards for web-based text content are still pending (CEN/CENELEC), this open-source protocol offers a state-of-the-art method to meet transparency obligations. It is **not endorsed by or affiliated with** the European Union or any EU institution.
+
 ## 1. Overview
 
 The AI Transparency Protocol defines a machine-readable JSON manifest served at `/.well-known/ai-transparency.json` that declares how a website uses AI-generated content. It is designed to fulfill EU AI Act Article 50 transparency obligations.
