@@ -197,6 +197,24 @@ This pattern is RECOMMENDED because:
 - **Crawler-parseable** — structured text in a predictable format
 - **Complements Layer 1** — the JSON manifest remains the canonical source
 
+### 8.3 Disclosure Guidance by ATS Tier
+
+| ATS Tier | Visible Disclosure | Recommended Method | Legal Basis |
+| --- | --- | --- | --- |
+| ATS-0 | ❌ Not required | Source Code Declaration only | No AI content → nothing to disclose |
+| ATS-1 / ATS-1T | ⚡ Optional | Byline: `AI-assisted` | Minor AI involvement, good practice |
+| ATS-2 / ATS-3 | ✅ Recommended | Byline: `✨ AI co-created (ATS-2)` | Art. 50 Abs. 5 — "clear and distinguishable" |
+| ATS-4 / ATS-5 | ✅ **Required** | Byline: `✨ AI-generated (ATS-4)` | Art. 50 Abs. 2+5 — fully AI-generated content |
+
+> [!IMPORTANT]
+> For ATS-4 and ATS-5 content, a visible disclosure to the end user is a **legal obligation** under Art. 50 Abs. 5. A source code comment or JSON manifest alone is not sufficient — the information must be presented "in a clear and distinguishable manner" to the natural person.
+
+**Example byline for ATS-3 content:**
+
+```html
+<p class="ai-byline">✨ This article was drafted with AI assistance (ATS-3)</p>
+```
+
 ## 9. Client-Side Widget (RECOMMENDED)
 
 > **IMPORTANT:** Art. 50 does NOT require a pop-up, banner, or opt-in consent dialog. Unlike the GDPR (cookie banners), the AI Act requires only **transparency** — the user must be able to *see* the information, not *accept* it.
