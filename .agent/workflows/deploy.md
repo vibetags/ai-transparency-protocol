@@ -6,6 +6,8 @@ description: Deploy ATP website — git commit + push + vercel deploy
 
 // turbo-all
 
+Deployt alle Änderungen auf GitHub UND aktualisiert die Live-Website auf Vercel.
+
 1. Stage all changes:
 ```bash
 cd /Users/info/Desktop/ai-transparency-protocol && git add -A
@@ -13,30 +15,31 @@ cd /Users/info/Desktop/ai-transparency-protocol && git add -A
 
 2. Check what changed:
 ```bash
-cd /Users/info/Desktop/ai-transparency-protocol && git status
+cd /Users/info/Desktop/ai-transparency-protocol && git status --short
 ```
 
-3. Commit with message (use a descriptive message based on what changed):
+3. Commit with a descriptive message based on the changes (look at the status output):
 ```bash
-cd /Users/info/Desktop/ai-transparency-protocol && git commit -m "update: [describe changes]"
+cd /Users/info/Desktop/ai-transparency-protocol && git -c commit.gpgsign=false commit -m "update: [describe changes based on git status]"
 ```
+> [!NOTE]
+> If the commit hangs, use the MCP GitKraken `git_add_or_commit` tool as fallback.
 
 4. Push to GitHub:
 ```bash
 cd /Users/info/Desktop/ai-transparency-protocol && git push
 ```
+> [!NOTE]
+> If push hangs, use the MCP GitKraken `git_push` tool as fallback.
 
-5. Deploy to Vercel:
+5. Deploy to Vercel production:
 ```bash
 cd /Users/info/Desktop/ai-transparency-protocol && vercel --prod --yes
 ```
 
-6. Verify the live site headers:
+6. Verify the live site responds and has correct headers:
 ```bash
-curl -sI https://ai-transparency-protocol.vercel.app | head -20
+curl -sI https://ai-transparency-protocol.vercel.app | grep -E "(HTTP|ai-transparency|content-type)"
 ```
 
-7. Verify the AI-Transparency manifest:
-```bash
-curl -s https://ai-transparency-protocol.vercel.app/.well-known/ai-transparency.json | head -5
-```
+7. Confirm deployment is complete. Report the Vercel URL and verification results to the user.

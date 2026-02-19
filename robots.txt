@@ -1,0 +1,50 @@
+# GEO-Inject AI Bot Freigabe
+# Generiert von GEO-Inject Activation Protocol
+# AI Transparency Protocol — ai-transparency-protocol.vercel.app
+
+# OpenAI (ChatGPT, ChatGPT Search)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Google Gemini & AI Overviews
+User-agent: Google-Extended
+Allow: /
+
+# Anthropic (Claude)
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Microsoft Copilot (verwendet Bing)
+User-agent: Bingbot
+Allow: /
+
+# Amazon (Rufus, Alexa)
+User-agent: Amazonbot
+Allow: /
+
+# Meta AI
+User-agent: FacebookBot
+Allow: /
+
+# Allgemeine Suchmaschinen
+User-agent: Googlebot
+Allow: /
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://ai-transparency-protocol.vercel.app/sitemap.xml
+
+# AI Content Files
+Sitemap: https://ai-transparency-protocol.vercel.app/llms.txt
