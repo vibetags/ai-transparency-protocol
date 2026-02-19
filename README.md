@@ -1,39 +1,40 @@
 # AI Transparency Protocol
 
-**The pragmatic bridge between EU AI Act Article 50 and web reality.**
+**Machine-readable AI content transparency for the web.**
 
-> A machine-readable JSON manifest for AI content transparency — the "Poor Man's C2PA" that web publishers can actually deploy.
+> An open-source proposal for how websites can declare their use of AI-generated content — per route, per content type, in a single JSON file.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Schema Version](https://img.shields.io/badge/Schema-v2.0-blue.svg)](schema/v2.0.json)
-[![ATS Framework](https://img.shields.io/badge/ATS-2026-orange.svg)](SPEC.md)
-
-> **Part of the Complete AI Interface Layer** — This protocol handles **Defense** (legal compliance, Art. 50). For **Offense** (AI search visibility, brand positioning), see [VibeTags™ & AgenticContext™](https://github.com/vibetags/vibetags-spec).
+[![ATS Framework](https://img.shields.io/badge/ATS_Framework-2026-orange.svg)](SPEC.md)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 ---
 
-## The Problem
+## Why This Exists
 
-The EU AI Act Article 50 takes effect **August 2, 2026** with fines up to **€15 million**. Every website using AI-generated content must provide machine-readable and human-readable transparency disclosures.
+The EU AI Act (Article 50) creates new transparency obligations for AI-generated content, effective **August 2, 2026**.
 
-Current solutions miss the mark:
+- **Providers** (OpenAI, Google, etc.) must embed machine-readable markers into AI outputs
+- **Deployers** (websites publishing AI content on matters of public interest) must disclose AI involvement to users
 
-| Approach | Problem |
+Providers will solve their part with watermarking (SynthID) and content credentials (C2PA).
+
+But **Deployers** — the millions of websites using AI for blogs, chatbots, product descriptions — have no standardized way to declare: *"This specific page was AI-assisted. That chatbot is fully autonomous. Our legal pages are human-authored."*
+
+That's the gap this protocol addresses.
+
+## Who Is This For?
+
+| You are... | This helps you... |
 |---|---|
-| **llms.txt / W3C TDMRep** | Inbound focus — tells scrapers what NOT to train on. Doesn't solve the Art. 50 *outbound* disclosure obligation |
-| **C2PA (Content Credentials)** | Cryptographic overkill — requires certificate infrastructure. Designed for images/video, not AI-generated text |
-| **IETF OETP Draft** | Massively overloaded — demands model training details and data labeling. Unusable for normal web publishers |
+| **Web publisher** using AI content tools | Declare AI involvement per URL pattern |
+| **News site / public interest publisher** | Meet Art. 50 Abs. 4 disclosure obligations |
+| **Enterprise with mixed content** | Different transparency levels per section |
+| **Compliance officer** | Machine-readable, schema-validated declarations |
+| **Developer / CMS vendor** | Standard format to build tools against |
 
-## The Solution
-
-A single JSON file at `/.well-known/ai-transparency.json` that:
-
-- ✅ **Fulfills Article 50** — machine-readable AI content disclosure
-- ✅ **Per-route granularity** — chatbot (ATS-5) vs. blog (ATS-2) vs. legal pages (ATS-0)
-- ✅ **ATS Framework compatible** — January 2026 Authorship Transparency Statement tiers
-- ✅ **Validatable** — `$schema` reference for automated compliance checking
-- ✅ **5-minute deployment** — no crypto, no certificates, no infrastructure
-- ✅ **SEO-safe** — granular scope prevents search engines from penalizing human content
+> **Honest note:** If your website doesn't publish AI-generated text on matters of public interest, Article 50 may not legally require you to disclose. But transparency is good practice — and this makes it trivially easy.
 
 ## Quick Start
 
@@ -45,7 +46,7 @@ Create `/.well-known/ai-transparency.json`:
   "eu_ai_act": {
     "article_50_compliant": true,
     "effective_date": "2026-08-02",
-    "disclosure_method": ["http-header", "client-widget", "manifest"]
+    "disclosure_method": ["manifest", "http-header"]
   },
   "policies": [
     {
@@ -65,90 +66,77 @@ Create `/.well-known/ai-transparency.json`:
     {
       "scope": ["/impressum", "/agb", "/datenschutz"],
       "ats_tier": "ATS-0",
-      "description": "Strictly human-authored, no AI disclosure required."
+      "description": "Human-authored, no AI disclosure needed."
     }
   ],
   "transparency_policy_url": "https://example.com/ai-transparency",
-  "contact": "compliance@example.com",
-  "generator": "TrueSource AI Middleware",
-  "x-asimov-laws": "acknowledged"
+  "contact": "compliance@example.com"
 }
 ```
 
-That's it. You're Article 50 compliant.
+Deploy it. Done. That's the entire implementation.
+
+## The Key Idea: Per-Route Granularity
+
+Most transparency approaches treat an entire website as one unit. But websites aren't monolithic:
+
+```
+example.com/
+├── /chatbot/*     → Fully autonomous AI (ATS-5)
+├── /blog/*        → Human-edited, AI-assisted (ATS-2)  
+├── /products/*    → AI-drafted descriptions (ATS-3)
+├── /legal/*       → 100% human-authored (ATS-0)
+└── /reports/*     → AI-generated, human-reviewed (ATS-4)
+```
+
+Each route can have its own ATS tier, its own disclosure level, and its own editorial responsibility declaration. This is what makes `ai-transparency.json` useful — and what no other approach currently offers.
 
 ## ATS Tiers (Authorship Transparency Statement)
 
-The ATS Framework (January 2026, [Meaningfulness Media Group](https://github.com/ATS-Framework)) defines **six tiers of AI involvement** in content creation:
+The [ATS Framework](https://github.com/ATS-Framework/ATS-Framework) (January 2026) defines six tiers of AI involvement:
 
-| Tier | Role Name | Human Role | Example |
+| Tier | Name | Human Role | Example |
 |---|---|---|---|
-| **ATS-0** | Unaugmented (Traditional Artisan) | Sole author, no AI | Legal pages, Impressum |
-| **ATS-1** | Augmented (Architect) | Author; AI refines/analyzes | Spell-check, grammar, research |
-| **ATS-1T** | Transformative (Translator) | Author; AI translates only | One-to-one translation |
-| **ATS-2** | Co-Creative (Producer) | Editor; AI drafts fragments | AI-assisted blog posts |
-| **ATS-3** | Generative (Director) | Reviewer; AI drafts structure | AI-drafted newsletters |
-| **ATS-4** | Autonomous (Editor) | Oversight; AI generates from outlines | Auto-generated reports |
-| **ATS-5** | Fully Autonomous (Publisher) | None; AI generates & publishes | Chatbots, autonomous agents |
+| **ATS-0** | Unaugmented | Sole author, no AI | Legal pages, Impressum |
+| **ATS-1** | Augmented | Author; AI refines | Spell-check, grammar, research |
+| **ATS-1T** | Transformative | Author; AI translates | One-to-one translation |
+| **ATS-2** | Co-Creative | Editor; AI drafts fragments | AI-assisted blog posts |
+| **ATS-3** | Generative | Reviewer; AI drafts structure | AI-drafted newsletters |
+| **ATS-4** | Autonomous | Oversight; AI generates | Auto-generated reports |
+| **ATS-5** | Fully Autonomous | None | Chatbots, autonomous agents |
 
-> **Bright Line:** ATS-2 marks the threshold where AI generates first-pass token sequences ("generative use"). ATS-0 and ATS-1 are "reactive use" only.
+> **Bright Line:** ATS-2 is where AI starts generating first-pass content. Below that is "reactive use" only.
 
-## E-Scale (AI Contribution Extent)
+## How It Compares
 
-| Level | AI Contribution | Typical Use |
-|---|---|---|
-| **E0** | < 1% | Pure human content |
-| **E1** | 1–25% | Minor AI assistance |
-| **E2** | 26–50% | AI co-creation |
-| **E3** | 51–90% | AI-primary with human review |
-| **E4** | > 90% | Fully autonomous AI |
+| Feature | This Protocol | C2PA | IETF OETP | llms.txt |
+|---|---|---|---|---|
+| Web text focus | ✅ Primary | ⚠️ Emerging | ✅ | ❌ |
+| Per-route scope | ✅ | ❌ | ❌ | ❌ |
+| Editorial exemption | ✅ | ❌ | ❌ | ❌ |
+| No crypto required | ✅ | ❌ | ✅ | ✅ |
+| JSON Schema validation | ✅ | N/A | ✅ | ❌ |
+| 5-min deployment | ✅ | ❌ | ❌ | ✅ |
+
+**Important:** These are complementary, not competing. C2PA handles images/video provenance. SynthID handles watermarking. This protocol handles **site-level web text declarations**. A complete transparency stack may use all three.
 
 ## Triple-Layer Labeling
 
-The protocol recommends a three-layer approach:
+The protocol recommends three layers:
 
-```text
-Layer 1 (Machine):
-  → HTTP Headers: AI-Transparency, AI-Content-Policy, AI-Generated-Content
+```
+Layer 1 — Machine:
   → /.well-known/ai-transparency.json manifest
-  → HTML Auto-Discovery: <link rel="ai-transparency" href="/.well-known/ai-transparency.json">
+  → HTTP Headers: AI-Transparency: article-50-compliant
+  → HTML: <link rel="ai-transparency" href="/.well-known/ai-transparency.json">
 
-Layer 2 (Human — JavaScript):
-  → WCAG 2.1 AA transparency badge widget
-  → Keyboard navigation (Enter/Space/Escape)
+Layer 2 — Source Code:
+  → HTML comment block with ATS tier, scope, and compliance status
+  → Parseable by auditors and compliance crawlers
 
-Layer 3 (Human — Fallback):
-  → <noscript> text-link for CSP-blocked environments
-  → Works without JavaScript
-```
-
-### HTML Auto-Discovery
-
-Add to your site's `<head>` for crawler discovery (like RSS feeds or favicons):
-
-```html
-<link rel="ai-transparency" href="/.well-known/ai-transparency.json">
-```
-
-## HTTP Headers
-
-Complement the manifest with response headers:
-
-```http
-AI-Transparency: article-50-compliant
-AI-Content-Policy: https://example.com/ai-transparency
-AI-Generated-Content: true
-```
-
-> **Note:** We intentionally avoid `Content-Credentials` to prevent namespace collision with the C2PA standard (Adobe, Microsoft).
-
-### CORS (Required for Scanners)
-
-The manifest route **must** allow cross-origin access for EU audit tools, browser extensions, and compliance scanners:
-
-```http
-Access-Control-Allow-Origin: *
-Content-Type: application/json
+Layer 3 — User-Facing:
+  → WCAG 2.1 AA transparency badge widget (optional)
+  → Byline integration: "Author: Jane Doe · ✨ AI co-created"
 ```
 
 ## Examples
@@ -157,59 +145,68 @@ See the [examples/](examples/) directory:
 
 - [Site-wide](examples/site-wide.json) — Simplest case, entire site
 - [Mixed Content](examples/mixed-content.json) — AI blog + human legal pages
-- [Enterprise](examples/enterprise.json) — Full ATS policies with 3 routes
+- [Enterprise](examples/enterprise.json) — Multiple routes with different ATS tiers
 
-## Comparison
+## Adoption Path
 
-| Feature | This Protocol | C2PA | IETF OETP | llms.txt |
-|---|---|---|---|---|
-| Text content | ✅ | ⚠️ Emerging | ✅ | ❌ |
-| Per-route scope | ✅ | ❌ | ❌ | ❌ |
-| ATS tiers | ✅ | ❌ | Partial | ❌ |
-| No crypto needed | ✅ | ❌ | ✅ | ✅ |
-| Art. 50 compliant | ✅ | ✅ | Partial | ❌ |
-| 5-min deployment | ✅ | ❌ | ❌ | ✅ |
-| SEO-safe | ✅ | N/A | ❌ | N/A |
-| JSON Schema | ✅ | N/A | ✅ | ❌ |
+This is **not an official standard**. It's an open-source proposal hoping to become one.
 
-## Tooling
+That's how web conventions work:
 
-**TrueSource AI Middleware** generates this manifest automatically along with platform-specific configs for:
+| Convention | Official at Launch? | Today |
+|---|---|---|
+| `robots.txt` | ❌ Private proposal (1994) | ✅ Universal standard |
+| `security.txt` | ❌ Indie project | ✅ RFC 9116 |
+| `ads.txt` | ❌ IAB initiative | ✅ Industry standard |
+| **`ai-transparency.json`** | ❌ Open source (2026) | ⏳ Building momentum |
 
-Cloudflare Workers · Vercel Edge · Nginx · Apache · AWS Lambda@Edge · WordPress · Netlify · Shopify
+> **Adoption creates standards. Standards don't create adoption.**
 
-```python
-from ai_bot_middleware import AIBotMiddleware
+## Validate Your Manifest
 
-m = AIBotMiddleware(ai_content_policies=[
-    {"scope": "/chatbot/*", "ats_tier": "ATS-5", "ats_extent": "E4"},
-    {"scope": "/blog/*", "ats_tier": "ATS-2", "human_oversight": True},
-    {"scope": "/impressum", "ats_tier": "ATS-0"},
-])
-manifest = m.generate_ai_transparency_manifest(audit_data)
+Every manifest can be validated against the [JSON Schema](schema/v2.0.json):
+
+```bash
+# Using ajv-cli
+npx ajv validate -s schema/v2.0.json -d your-manifest.json
+
+# Or just curl and check
+curl -s https://your-site.com/.well-known/ai-transparency.json | python3 -m json.tool
 ```
+
+## EU AI Act Context
+
+- **Article 50** — Transparency obligations for providers and deployers of AI systems
+- **Article 50 Abs. 2** — Providers must mark outputs as machine-detectable (Provider obligation)
+- **Article 50 Abs. 4** — Deployers must disclose AI text published on matters of public interest
+- **Article 50 Abs. 5** — Disclosure must be clear, distinguishable, and accessible (WCAG)
+- **Editorial exemption** — If AI text undergoes human review and someone holds editorial responsibility, the Deployer disclosure obligation may not apply
+
+> **This protocol does not claim to make anyone "Article 50 compliant" by itself.** Compliance is a legal assessment that depends on your specific situation, content type, and role (Provider vs. Deployer). This protocol provides a standardized technical mechanism for the disclosure part of that compliance.
 
 ## Specification
 
-See [SPEC.md](SPEC.md) for the formal specification.
+See [SPEC.md](SPEC.md) for the formal specification, including:
+- Complete schema reference
+- Article 50 paragraph mapping
+- HTTP header conventions
+- Source Code Declaration format
+- Client-side widget recommendations
 
-## Legal Context
+## Ethical Principles
 
-- **EU AI Act** — [Regulation (EU) 2024/1689](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689)
-- **Article 50** — Transparency obligations for AI content providers
-- **Article 99** — Fines up to €15,000,000 or 3% of global annual turnover
-- **European Accessibility Act (EAA)** — Accessibility deadline June 28, 2025
+See [ETHICS.md](ETHICS.md) — transparency is not optional, complexity hinders compliance, and this protocol should prevent compliance washing, not enable it.
 
-## The Complete AI Web Ecosystem
+## Contributing
 
-> While this protocol handles your **Outbound Compliance** (defense against €15M fines), check out our sister project [VibeTags™ & AgenticContext™](https://github.com/vibetags/vibetags-spec) to optimize how AI agents perceive and recommend your brand (**Inbound LLM Optimization**).
+We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-| | Offense (Growth) | Defense (Legal) |
-|---|---|---|
-| **Protocol** | VibeTags™ & AgenticContext™ | AI Transparency Protocol |
-| **Problem** | 35% of searches go to AI — brand invisible | €15M fines for missing AI disclosure |
-| **Solution** | Emotional + contextual triggers in Schema.org | `ai-transparency.json` manifest + headers |
-| **Repo** | [vibetags-spec](https://github.com/vibetags/vibetags-spec) | This repo |
+**Most wanted:**
+- 🌍 Translations of documentation (DE, FR, ES, IT)
+- 🔧 CMS plugins (WordPress, Drupal, Shopify)
+- 📋 Real-world adoption examples
+- 🐛 Schema edge cases and validation improvements
+- 📝 Legal review of Article 50 mapping accuracy
 
 ## Credits
 
@@ -218,11 +215,6 @@ Created by [Sascha Deforth](https://www.linkedin.com/in/deforth/) at [Antigravit
 Built on:
 - [ATS Framework](https://github.com/ATS-Framework/ATS-Framework) (January 2026, Meaningfulness Media Group)
 - [EU AI Act Article 50](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689)
-- [IETF RFC 7230](https://tools.ietf.org/html/rfc7230) HTTP/1.1 Message Syntax
-
-## Easter Egg
-
-> *The EU AI Act is, at its core, Europe's bureaucratic implementation of Isaac Asimov's Three Laws of Robotics (1942). We thought it only fitting to acknowledge that. If your compliance scanner finds `x-asimov-laws: acknowledged` in a manifest — someone on the team has read their classics.* 🤖
 
 ## License
 
