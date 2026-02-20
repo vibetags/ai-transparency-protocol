@@ -22,6 +22,8 @@
     <meta name="keywords" content="AI Transparency, EU AI Act, Article 50, ATS Framework, AI Compliance, Machine-Readable Manifest, Content Transparency">
     <meta name="author" content="Sascha Deforth — Antigravity Ventures">
     <link rel="canonical" href="https://ai-transparency-protocol.vercel.app/">
+    <link rel="alternate" hreflang="en" href="https://ai-transparency-protocol.vercel.app/">
+    <link rel="alternate" hreflang="x-default" href="https://ai-transparency-protocol.vercel.app/">
 
     <!-- Open Graph -->
     <meta property="og:title" content="AI Transparency Protocol — The Poor Man's C2PA">
@@ -64,7 +66,16 @@
             "@type": "Organization",
             "name": "Antigravity Ventures"
         },
-        "license": "https://opensource.org/licenses/MIT"
+        "license": "https://opensource.org/licenses/MIT",
+        "speakable": {
+            "@type": "SpeakableSpecification",
+            "cssSelector": [
+                ".hero-title",
+                ".hero-subtitle",
+                ".section-title",
+                ".section-description"
+            ]
+        }
     }
     </script>
 
@@ -185,6 +196,22 @@
                     "@type": "Answer",
                     "text": "Non-compliance with EU AI Act Article 50 can result in fines up to €15,000,000 or 3% of global annual turnover, whichever is higher. The enforcement deadline is August 2, 2026."
                 }
+            },
+            {
+                "@type": "Question",
+                "name": "Is the AI Transparency Protocol an official EU standard?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Not yet — and neither was robots.txt (1994), security.txt (now RFC 9116), or ads.txt when they launched. Every .well-known/ standard started as a private proposal. ATP follows the same proven adoption path: open-source community standard first, formal recognition follows adoption."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How does ATP prevent compliance washing?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "ATP combines self-declaration (the manifest) with automated enforcement: JSON Schema validation ensures structural correctness, and compliance scanners like TrueSource AI verify that declared ATS tiers match actual content. Self-declaration plus machine-readable validation equals verifiable transparency."
+                }
             }
         ]
     }
@@ -251,6 +278,65 @@
         ]
     }
     </script>
+
+    <!-- Quick Win: Service Schema (+5 GEO Points) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "AI Transparency Protocol Implementation",
+        "description": "Machine-readable EU AI Act Article 50 compliance manifest deployment. Open-source specification for web publishers to declare AI usage per route.",
+        "provider": {
+            "@type": "Organization",
+            "name": "Antigravity Ventures",
+            "url": "https://ai-transparency-protocol.vercel.app/"
+        },
+        "serviceType": "AI Compliance",
+        "areaServed": {
+            "@type": "Place",
+            "name": "European Union"
+        },
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "ATP Deployment Options",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "ATP Open Source (Self-Service)",
+                        "description": "Free, open-source ATP manifest deployment via GitHub"
+                    }
+                }
+            ]
+        }
+    }
+    </script>
+
+    <!-- Quick Win: TechArticle Schema (+5 GEO Points) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "AI Transparency Protocol Specification v2.0",
+        "description": "Complete technical specification for machine-readable EU AI Act Article 50 compliance via JSON manifest. Defines ATS tiers, E-Scale, per-route policies, and triple-layer labeling.",
+        "author": {
+            "@type": "Person",
+            "name": "Sascha Deforth",
+            "url": "https://www.linkedin.com/in/deforth/"
+        },
+        "datePublished": "2026-02-01",
+        "dateModified": "2026-02-19",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Antigravity Ventures"
+        },
+        "about": ["EU AI Act", "Article 50", "AI Transparency", "Machine-readable compliance"],
+        "inLanguage": "en",
+        "license": "https://opensource.org/licenses/MIT",
+        "proficiencyLevel": "Expert"
+    }
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -293,8 +379,11 @@
                     <span class="hero-title-accent">Protocol</span>
                 </h1>
                 <p class="hero-subtitle">
-                    The pragmatic bridge between EU AI Act Article 50 and web reality.<br>
-                    <span class="hero-subtitle-highlight">Machine-readable compliance in a single JSON file.</span>
+                    <code>robots.txt</code> told crawlers what to do.<br>
+                    <code>ai-transparency.json</code> tells users what AI did.
+                </p>
+                <p class="hero-subtitle hero-subtitle--deployer">
+                    <span class="hero-subtitle-highlight">The Deployer's answer to Article 50 — in 5 minutes.</span>
                 </p>
                 <div class="hero-countdown">
                     <div class="countdown-label">Article 50 Enforcement Deadline</div>
@@ -707,6 +796,62 @@
         </div>
     </section>
 
+    <!-- Proven Adoption Path Section -->
+    <section class="section section--dark" id="adoption">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Proven Adoption Path</span>
+                <h2 class="section-title">Every Standard Started Unofficial</h2>
+                <p class="section-description">
+                    The criticism: "It's not an official EU standard."<br>
+                    The history: Neither was anything in <code>/.well-known/</code> — until it was.
+                </p>
+            </div>
+            <div class="precedent-table-wrapper reveal">
+                <table class="precedent-table">
+                    <thead>
+                        <tr>
+                            <th>Standard</th>
+                            <th>Official at Launch?</th>
+                            <th>Status Today</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>robots.txt</code></td>
+                            <td><span class="precedent-no">❌ Private proposal (1994)</span></td>
+                            <td><span class="precedent-yes">✅ De-facto universal standard</span></td>
+                        </tr>
+                        <tr>
+                            <td><code>security.txt</code></td>
+                            <td><span class="precedent-no">❌ Indie project</span></td>
+                            <td><span class="precedent-yes">✅ RFC 9116 (IETF Standard)</span></td>
+                        </tr>
+                        <tr>
+                            <td><code>ads.txt</code></td>
+                            <td><span class="precedent-no">❌ IAB initiative</span></td>
+                            <td><span class="precedent-yes">✅ Industry standard</span></td>
+                        </tr>
+                        <tr>
+                            <td><code>humans.txt</code></td>
+                            <td><span class="precedent-no">❌ Community project</span></td>
+                            <td><span class="precedent-adopted">⚡ Widely adopted</span></td>
+                        </tr>
+                        <tr class="precedent-highlight">
+                            <td><code>ai-transparency.json</code></td>
+                            <td><span class="precedent-no">❌ Open Source (2026)</span></td>
+                            <td><span class="precedent-wip">⏳ Building momentum</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="precedent-cta reveal">
+                <p>Every <code>/.well-known/</code> standard began exactly where ATP is now.<br>
+                <strong>Adoption creates standards. Standards don't create adoption.</strong></p>
+            </div>
+        </div>
+    </section>
+
     <!-- Ethics Section -->
     <section class="section section--dark" id="ethics">
         <div class="container">
@@ -746,7 +891,7 @@
                 <div class="ethics-card reveal">
                     <div class="ethics-number">06</div>
                     <h3>No Compliance Washing</h3>
-                    <p>A manifest that claims compliance while hiding AI usage is worse than no manifest at all. Implementations must be verifiable.</p>
+                    <p>Self-declaration without enforcement is meaningless. That's why ATP includes JSON Schema validation and automated compliance scanning — the manifest declares, the scanner verifies.</p>
                 </div>
             </div>
         </div>
@@ -825,7 +970,7 @@
                         <span class="nav-logo-icon">◈</span>
                         AI Transparency Protocol
                     </div>
-                    <p class="footer-tagline">The pragmatic bridge between EU AI Act Article 50 and web reality.</p>
+                    <p class="footer-tagline">robots.txt told crawlers what to do. ai-transparency.json tells users what AI did.</p>
                     <p class="footer-license">MIT License — Use freely, attribute kindly.</p>
                 </div>
                 <div class="footer-links-col">
