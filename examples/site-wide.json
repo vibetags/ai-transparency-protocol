@@ -12,9 +12,43 @@
       "type": "site-wide"
     }
   },
+  "compliance": [
+    {
+      "jurisdiction": "EU",
+      "regulation": "AI Act Article 50",
+      "regulation_ref": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689",
+      "effective_date": "2026-08-02",
+      "status": "compliant",
+      "articles_mapped": ["Art. 50 Abs. 1", "Art. 50 Abs. 2", "Art. 50 Abs. 4", "Art. 50 Abs. 5"]
+    },
+    {
+      "jurisdiction": "IN",
+      "regulation": "IT (Intermediary Guidelines) Amendment Rules 2026",
+      "regulation_ref": "https://www.meity.gov.in/",
+      "effective_date": "2026-02-20",
+      "status": "compliant",
+      "articles_mapped": ["Rule 3(1)(b)(vii)", "Rule 3(1)(d)", "Rule 3(2)(b)"]
+    },
+    {
+      "jurisdiction": "KR",
+      "regulation": "AI Basic Act (Framework Act on AI)",
+      "regulation_ref": "https://www.msit.go.kr/",
+      "effective_date": "2026-01-22",
+      "status": "compliant",
+      "articles_mapped": ["Art. 31(1)", "Art. 31(2)", "Art. 31(3)"]
+    },
+    {
+      "jurisdiction": "CN",
+      "regulation": "Deep Synthesis Provisions",
+      "regulation_ref": "https://www.cac.gov.cn/",
+      "effective_date": "2023-01-10",
+      "status": "compliant",
+      "articles_mapped": ["Art. 16", "Art. 17", "Art. 18"]
+    }
+  ],
   "transparency_policy_url": "https://example.com/ai-transparency",
   "contact": "compliance@example.com",
-  "last_updated": "2026-02-18",
+  "last_updated": "2026-02-21",
   "generator": "TrueSource AI Middleware",
   "wcag_compliance": "WCAG 2.1 AA"
 }

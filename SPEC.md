@@ -63,6 +63,7 @@ Every manifest MUST include a `$schema` property pointing to the versioned JSON 
 |---|---|---|---|
 | `$schema` | string (URI) | REQUIRED | JSON Schema validation URL |
 | `eu_ai_act` | object | REQUIRED | EU AI Act compliance declaration |
+| `compliance` | array | RECOMMENDED | Multi-jurisdiction compliance declarations (v2.1) |
 | `policies` | array | RECOMMENDED | Per-route content policies (v2.0) |
 | `schema_version` | string | OPTIONAL | Legacy version indicator (use `$schema` instead) |
 | `transparency_policy_url` | string (URI) | REQUIRED | Human-readable transparency policy page |
@@ -87,6 +88,57 @@ The following table maps each paragraph of EU AI Act Article 50 to the correspon
 | Abs. 6 | Chapter III unaffected | — | N/A |
 | Abs. 7 | AI Office codes of practice | — | Future alignment |
 
+### 4.2 Global Compliance Mapping
+
+The `compliance` array enables multi-jurisdiction transparency declarations. Each entry maps a national or regional regulation to ATP features.
+
+#### Compliance Entry Object
+
+| Property | Type | Required | Description |
+|---|---|---|---|
+| `jurisdiction` | string | REQUIRED | ISO 3166-1 alpha-2 country code or region (e.g., `EU`, `IN`, `KR`, `CN`) |
+| `regulation` | string | REQUIRED | Name of the regulation |
+| `regulation_ref` | string (URI) | OPTIONAL | Link to official legal text |
+| `effective_date` | string (date) | REQUIRED | ISO 8601 enforcement date |
+| `status` | string | REQUIRED | `compliant`, `partial`, or `pending` |
+| `articles_mapped` | array of strings | OPTIONAL | Specific articles/rules addressed |
+
+#### 4.2.1 India — IT (Intermediary Guidelines) Amendment Rules, 2026
+
+Effective **February 20, 2026**. Notified by MeitY on February 10, 2026.
+
+| India IT Rule | Obligation | ATP Feature |
+|---|---|---|
+| Rule 3(1)(b)(vii) | Prominent labeling of SGI (Synthetically Generated Information) | `ats_tier` + `content_types` + Client widget (Sec. 9) |
+| Rule 3(1)(d) | Permanent metadata / provenance markers | JSON manifest + HTTP headers (Sec. 8) |
+| Rule 3(1)(d) | Non-removable, tamper-proof identifiers | `c2pa_status` + Source Code Declaration (Sec. 8.2) |
+| Rule 3(2)(b) | User declaration of AI-generated uploads | `deepfake_disclosure` flag |
+| Rule 3(2)(c) | Technical verification by platforms (SSMIs) | JSON Schema validation + scanner support |
+
+> **Note:** India's rules use the term "Synthetically Generated Information" (SGI), defined as audio, visual, or audio-visual content that appears real and depicts individuals or events indistinguishable from reality. ATP's `content_types` array with `deepfake_disclosure` directly addresses this.
+
+#### 4.2.2 South Korea — AI Basic Act (Framework Act on AI), 2026
+
+Effective **January 22, 2026**. Ministry of Science and ICT (MSIT).
+
+| Korea AI Basic Act | Obligation | ATP Feature |
+|---|---|---|
+| Art. 31(1) | Prior notice that AI operates the service | `ats_tier: ATS-4/5` + Client widget |
+| Art. 31(2) | Label AI-generated outputs | `ats_tier` + `ats_extent` + Source Code Declaration |
+| Art. 31(3) | Visible labels for realistic deepfakes | `deepfake_disclosure: true` + Client widget |
+| Art. 31(3) | Invisible watermarks for stylized AI content | `c2pa_status` field |
+| Penalty | Fines up to 30M KRW (~$20K) | N/A (informational) |
+
+#### 4.2.3 China — Deep Synthesis Provisions, 2023
+
+Effective **January 10, 2023**. Issued by CAC, MIIT, and MPS.
+
+| China Deep Synthesis | Obligation | ATP Feature |
+|---|---|---|
+| Art. 16 | Prominent labeling of content that may cause confusion | `ats_tier` + `content_types` + Client widget |
+| Art. 17 | Labeling function for other deep synthesis services | `ats_tier` + `description` field |
+| Art. 18 | No deletion/alteration/concealment of labels | Source Code Declaration (Sec. 8.2) + HTTP headers |
+
 ## 5. `eu_ai_act` Object
 
 | Property | Type | Required | Description |
@@ -94,6 +146,8 @@ The following table maps each paragraph of EU AI Act Article 50 to the correspon
 | `article_50_compliant` | boolean | REQUIRED | Whether the site complies with Art. 50 |
 | `effective_date` | string (date) | REQUIRED | Art. 50 enforcement date: `2026-08-02` |
 | `disclosure_method` | array of strings | REQUIRED | Methods used: `http-header`, `client-widget`, `manifest` |
+
+> **Note:** The `eu_ai_act` object remains REQUIRED for backward compatibility. For multi-jurisdiction declarations, use the `compliance` array (Sec. 4.2) alongside `eu_ai_act`.
 
 ## 6. Policies Array (v2.0)
 
@@ -316,6 +370,9 @@ When no `policies` array is present, the simple `scope` object provides v1.x-com
 ## 12. References
 
 - [EU AI Act — Regulation (EU) 2024/1689](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689)
+- [India IT (Intermediary Guidelines) Amendment Rules, 2026](https://www.meity.gov.in/content/information-technology-intermediary-guidelines-and-digital-media-ethics-code-rules-2021)
+- [South Korea AI Basic Act, 2026](https://www.msit.go.kr/)
+- [China Deep Synthesis Provisions, 2023](https://www.cac.gov.cn/)
 - [ATS Framework — Authorship Transparency Statement](https://github.com/ATS-Framework/ATS-Framework) (v1.0, Meaningfulness Media Group)
 - [IETF RFC 7230 — HTTP/1.1 Message Syntax](https://tools.ietf.org/html/rfc7230)
 - [IETF OETP Draft — Open Ethics Transparency Protocol](https://datatracker.ietf.org/doc/draft-lukianets-open-ethics-transparency-protocol/)

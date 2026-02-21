@@ -374,6 +374,10 @@
                     <span class="hero-badge-dot"></span>
                     Open Standard · MIT License · v2.0
                 </div>
+                <div class="hero-badge" style="margin-top: 0.5rem; background: linear-gradient(135deg, rgba(109, 40, 217, 0.15), rgba(59, 130, 246, 0.15)); border-color: rgba(109, 40, 217, 0.3);">
+                    <span style="font-size: 0.85em;">🌍</span>
+                    1 Protocol · 4 Laws · 4.2B People Covered
+                </div>
                 <h1 class="hero-title">
                     AI Transparency<br>
                     <span class="hero-title-accent">Protocol</span>
@@ -498,8 +502,8 @@
                 </div>
                 <div class="feature-card reveal">
                     <div class="feature-icon">✅</div>
-                    <h3>Article 50 Compliant</h3>
-                    <p>Machine-readable disclosure that EU audit tools and compliance scanners can validate automatically.</p>
+                    <h3>Multi-Jurisdiction Compliant</h3>
+                    <p>Maps to EU AI Act Art. 50, India IT Rules 2026, South Korea AI Basic Act, and China Deep Synthesis — with one manifest.</p>
                 </div>
                 <div class="feature-card reveal">
                     <div class="feature-icon">🔍</div>
@@ -655,6 +659,11 @@
     <span class="code-key">"effective_date"</span>: <span class="code-string">"2026-08-02"</span>,
     <span class="code-key">"disclosure_method"</span>: [<span class="code-string">"http-header"</span>, <span class="code-string">"client-widget"</span>, <span class="code-string">"manifest"</span>]
   },
+  <span class="code-key">"compliance"</span>: [
+    { <span class="code-key">"jurisdiction"</span>: <span class="code-string">"EU"</span>, <span class="code-key">"regulation"</span>: <span class="code-string">"AI Act Art. 50"</span>, <span class="code-key">"status"</span>: <span class="code-string">"compliant"</span> },
+    { <span class="code-key">"jurisdiction"</span>: <span class="code-string">"IN"</span>, <span class="code-key">"regulation"</span>: <span class="code-string">"IT Amendment Rules 2026"</span>, <span class="code-key">"status"</span>: <span class="code-string">"compliant"</span> },
+    { <span class="code-key">"jurisdiction"</span>: <span class="code-string">"KR"</span>, <span class="code-key">"regulation"</span>: <span class="code-string">"AI Basic Act"</span>, <span class="code-key">"status"</span>: <span class="code-string">"compliant"</span> }
+  ],
   <span class="code-key">"policies"</span>: [
     {
       <span class="code-key">"scope"</span>: <span class="code-string">"/chatbot/*"</span>,
@@ -667,11 +676,6 @@
       <span class="code-key">"ats_tier"</span>: <span class="code-string">"ATS-2"</span>,
       <span class="code-key">"ats_extent"</span>: <span class="code-string">"E2"</span>,
       <span class="code-key">"human_oversight"</span>: <span class="code-bool">true</span>
-    },
-    {
-      <span class="code-key">"scope"</span>: [<span class="code-string">"/impressum"</span>, <span class="code-string">"/agb"</span>, <span class="code-string">"/datenschutz"</span>],
-      <span class="code-key">"ats_tier"</span>: <span class="code-string">"ATS-0"</span>,
-      <span class="code-key">"description"</span>: <span class="code-string">"Strictly human-authored, no AI disclosure required."</span>
     }
   ],
   <span class="code-key">"transparency_policy_url"</span>: <span class="code-string">"https://example.com/ai-transparency"</span>,
@@ -760,6 +764,13 @@
                             <td class="highlight-col"><span class="check">✓</span></td>
                             <td><span class="check">✓</span></td>
                             <td><span class="partial">◐</span></td>
+                            <td><span class="cross">✗</span></td>
+                        </tr>
+                        <tr>
+                            <td>Multi-jurisdiction<br><small style="color: var(--text-muted);">EU + India + Korea + China</small></td>
+                            <td class="highlight-col"><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="cross">✗</span></td>
                             <td><span class="cross">✗</span></td>
                         </tr>
                         <tr>
