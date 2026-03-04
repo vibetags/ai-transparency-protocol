@@ -11,6 +11,11 @@
 [![Author: Sascha Deforth](https://img.shields.io/badge/Author-Sascha%20Deforth-blue.svg)](https://github.com/975SDE)
 [![Hope & Glory Studio](https://img.shields.io/badge/by-Hope%20%26%20Glory%20Studio-black.svg)](https://www.hopeandglory.studio)
 
+> [!WARNING]
+> **Experimental Project — Not Legal Advice — Not a Recommendation**
+>
+> This is an experimental open-source project. It does **not** constitute legal advice, a legal recommendation, or a guarantee of regulatory compliance. It is not endorsed by, affiliated with, or approved by the European Union, any EU institution, or any regulatory authority. Whether and how the EU AI Act applies to your situation depends on your specific role, content type, and jurisdiction. **Always consult a qualified legal professional** for compliance advice. Use at your own risk.
+
 ---
 
 ## Why This Exists
@@ -184,7 +189,7 @@ curl -s https://your-site.com/.well-known/ai-transparency.json | python3 -m json
 - **Article 50 Abs. 5** — Disclosure must be clear, distinguishable, and accessible (WCAG)
 - **Editorial exemption** — If AI text undergoes human review and someone holds editorial responsibility, the Deployer disclosure obligation may not apply
 
-> **This protocol does not claim to make anyone "Article 50 compliant" by itself.** Compliance is a legal assessment that depends on your specific situation, content type, and role (Provider vs. Deployer). This protocol provides a standardized technical mechanism for the disclosure part of that compliance.
+> **⚠️ This is an experiment, not legal advice.** This protocol does not claim to make anyone "Article 50 compliant" and does not constitute a legal recommendation. Compliance is a legal assessment that depends on your specific situation, content type, jurisdiction, and role (Provider vs. Deployer). This protocol provides an experimental, open-source technical mechanism for the disclosure part of that compliance. **Always consult a qualified legal professional.**
 
 ## Specification
 
