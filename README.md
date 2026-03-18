@@ -8,7 +8,7 @@
 [![Schema Version](https://img.shields.io/badge/Schema-v2.0-blue.svg)](schema/v2.0.json)
 [![ATS Framework](https://img.shields.io/badge/ATS_Framework-2026-orange.svg)](SPEC.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
-[![Author: Sascha Deforth](https://img.shields.io/badge/Author-Sascha%20Deforth-blue.svg)](https://github.com/975SDE)
+[![Author: Sascha Deforth](https://img.shields.io/badge/Author-Sascha%20Deforth-blue.svg)](https://github.com/SaschaDeforth)
 [![Hope & Glory Studio](https://img.shields.io/badge/by-Hope%20%26%20Glory%20Studio-black.svg)](https://www.hopeandglory.studio)
 
 > [!WARNING]
@@ -219,7 +219,7 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 Created by **[Sascha Deforth](https://www.linkedin.com/in/deforth/)** at [Hope & Glory Studio](https://www.hopeandglory.studio).
 
-- 🔗 [GitHub](https://github.com/975SDE) · [LinkedIn](https://www.linkedin.com/in/deforth/) · [Website](https://www.hopeandglory.studio)
+- 🔗 [GitHub](https://github.com/SaschaDeforth) · [LinkedIn](https://www.linkedin.com/in/deforth/) · [Website](https://www.hopeandglory.studio)
 
 Built on:
 - [ATS Framework](https://github.com/ATS-Framework/ATS-Framework) (January 2026, Meaningfulness Media Group)
